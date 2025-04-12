@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float movementSpeed = 8f;
+    [SerializeField] private float rotationSpeed = 130f;
 
     void Start()
     {
@@ -11,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        
+        MovementAndRotation();
     }
 
-    private void Movement()
+    private void MovementAndRotation()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        transform.Translate(verticalInput * movementSpeed * Time.deltaTime, 0, 0);
+        transform.Rotate(0, horizontalInput * rotationSpeed * Time.deltaTime, 0);
     }
 }
