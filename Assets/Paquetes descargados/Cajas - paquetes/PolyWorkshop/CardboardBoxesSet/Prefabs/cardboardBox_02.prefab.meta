@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10fc4df2da32a41aaa32d77bc913491c
+guid: 23fc59362ba1e264eb5b636821ad929a
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
@@ -8,8 +8,8 @@ NativeFormatImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 272637
-  packageName: Low Poly Factory Machine Pack Demo
+  productId: 30695
+  packageName: Cardboard Boxes Pack
   packageVersion: 1.0
-  assetPath: Assets/Settings/SampleSceneProfile.asset
-  uploadId: 668440
+  assetPath: Assets/PolyWorkshop/CardboardBoxesSet/Prefabs/cardboardBox_02.prefab
+  uploadId: 51662
