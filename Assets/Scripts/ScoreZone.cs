@@ -13,8 +13,8 @@ public class ScoreZone : MonoBehaviour
         {
             cajasRecibidas++;
 
-            // Hacemos hijo el objeto dentro del camión
-            other.transform.SetParent(transform);
+            // SOLUCIÓN: mantener la posición global
+            other.transform.SetParent(transform, true);
 
             if (cajasRecibidas >= 2)
             {
@@ -30,4 +30,5 @@ public class ScoreZone : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
 

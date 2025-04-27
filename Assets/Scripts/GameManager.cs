@@ -1,40 +1,108 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
+
 {
-    [Header("Configuraci�n de camiones")]
-    [SerializeField] private GameObject prefabCamion;
-    [SerializeField] private Transform[] puntosSpawn;
-    [SerializeField] private int cantidadCamionesEnNivel = 2;
+    public static GameManager Instance { get; private set; }
 
-    private PilaDeCamiones pilaCamiones = new PilaDeCamiones();
+    [Header("Juego")]
+    public int score = 0;
+    public GameState currentState = GameState.Playing;
 
-    void Start()
+    [Header("UI")]
+    [SerializeField] private GameObject pauseMenuUI;
+
+    private void Awake()
     {
-        CrearPilaDeCamiones(10); 
-        InstanciarCamionesDelNivel(); 
-    }
-
-    private void CrearPilaDeCamiones(int cantidadTotal)
-    {
-        for (int i = 0; i < cantidadTotal; i++)
+      
+        if (Instance == null)
         {
-            GameObject nuevoCamion = prefabCamion; 
-            pilaCamiones.Apilar(nuevoCamion);
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    private void InstanciarCamionesDelNivel()
+    private void Update()
     {
-        for (int i = 0; i < cantidadCamionesEnNivel; i++)
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            if (!pilaCamiones.EstaVacia() && i < puntosSpawn.Length)
-            {
-                GameObject camionAInstanciar = pilaCamiones.Desapilar();
-                GameObject instancia = Instantiate(camionAInstanciar, puntosSpawn[i].position, Quaternion.identity);
-                instancia.name = "Camion_" + i;
-            }
+            TogglePause();
         }
     }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        Debug.Log("Puntaje actual: " + score);
+    }
+
+    public void SetGameState(GameState newState)
+    {
+        currentState = newState;
+        Debug.Log("Nuevo estado del juego: " + currentState);
+    }
+
+    public void TogglePause()
+    {
+        if (currentState == GameState.Playing)
+        {
+            Time.timeScale = 0f;
+            SetGameState(GameState.Paused);
+
+            if (pauseMenuUI != null)
+                pauseMenuUI.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None; // 🔥 Liberar mouse
+            Cursor.visible = true;
+        }
+        else if (currentState == GameState.Paused)
+        {
+            Time.timeScale = 1f;
+            SetGameState(GameState.Playing);
+
+            if (pauseMenuUI != null)
+                pauseMenuUI.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked; // 🔒 Bloquear mouse
+            Cursor.visible = false;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        SetGameState(GameState.Playing);
+
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked; // 🔒 Bloquear mouse
+        Cursor.visible = false;
+    }
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene("MenuPrincipal"); 
+    }
+    public void QuitGame()
+    {
+             Application.Quit(); // Cierra el juego (solo funciona en build)
+    }
+
+
+
+}
+
+public enum GameState
+{
+    Playing,
+    Paused,
+    Victory,
+    Defeat
 }
 
