@@ -1,39 +1,39 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("Configuración de camiones")]
-    [SerializeField] private GameObject prefabCamion;
-    [SerializeField] private Transform[] puntosSpawn;
-    [SerializeField] private int cantidadCamionesEnNivel = 2;
-
-    private PilaDeCamiones pilaCamiones = new PilaDeCamiones();
+    [SerializeField] private TMP_Text textoTiempo;
+    [SerializeField] private float tiempoDeNivel = 6f;
+    private float tiempoRestante;
 
     void Start()
     {
-        CrearPilaDeCamiones(10);
-        InstanciarCamionesDelNivel();
+        tiempoRestante = tiempoDeNivel;
     }
 
-    private void CrearPilaDeCamiones(int cantidadTotal)
+    void Update()
     {
-        for (int i = 0; i < cantidadTotal; i++)
+        ControlarTiempo();
+    }
+
+    private void ControlarTiempo()
+    {
+        if (GameManager.Instance.currentState != GameState.Playing)
+            return;
+
+        if (tiempoRestante > 0)
         {
-            GameObject nuevoCamion = prefabCamion;
-            pilaCamiones.Apilar(nuevoCamion);
+            tiempoRestante -= Time.deltaTime;
+            textoTiempo.text = "Tiempo: " + Mathf.CeilToInt(tiempoRestante).ToString() + "s";
+        }
+        else
+        {
+            tiempoRestante = 0;
+            textoTiempo.text = "Tiempo: 0s";
+            SceneManager.LoadScene("Perder");
         }
     }
 
-    private void InstanciarCamionesDelNivel()
-    {
-        for (int i = 0; i < cantidadCamionesEnNivel; i++)
-        {
-            if (!pilaCamiones.EstaVacia() && i < puntosSpawn.Length)
-            {
-                GameObject camionAInstanciar = pilaCamiones.Desapilar();
-                GameObject instancia = Instantiate(camionAInstanciar, puntosSpawn[i].position, Quaternion.identity);
-                instancia.name = "Camion_" + i;
-            }
-        }
-    }
 }
