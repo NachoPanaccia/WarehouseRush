@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TMP_Text textoTiempo;
     [SerializeField] private float tiempoDeNivel = 60f;
     private float tiempoRestante;
-    private bool nivelCompletado = false; // 💥 Para no pasar de nivel varias veces
+    private bool nivelCompletado = false;
 
     private void Awake()
     {
