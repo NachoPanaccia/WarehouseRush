@@ -1675,6 +1675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textoTiempo: {fileID: 677223700}
   tiempoDeNivel: 200
+  pauseMenuUI: {fileID: 1413984349}
+  currentState: 0
 --- !u!1001 &322330099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8905,8 +8907,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 317687138}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:

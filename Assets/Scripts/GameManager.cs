@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 
     
     public int score = 0;
-    public GameState currentState = GameState.Playing;
+    
 
    
-    [SerializeField] private GameObject pauseMenuUI;
+ 
 
     [SerializeField] private List<string> niveles;
     private int nivelActualIndex = -1;
@@ -33,10 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TogglePause();
-        }
+        
     }
 
     public void AddScore(int amount)
@@ -45,49 +42,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Puntaje actual: " + score);
     }
 
-    public void SetGameState(GameState newState)
-    {
-        currentState = newState;
-        Debug.Log("Nuevo estado del juego: " + currentState);
-    }
+    
 
-    public void TogglePause()
-    {
-        if (currentState == GameState.Playing)
-        {
-            Time.timeScale = 0f;
-            SetGameState(GameState.Paused);
-
-            if (pauseMenuUI != null)
-                pauseMenuUI.SetActive(true);
-
-            Cursor.lockState = CursorLockMode.None; 
-            Cursor.visible = true;
-        }
-        else if (currentState == GameState.Paused)
-        {
-            Time.timeScale = 1f;
-            SetGameState(GameState.Playing);
-
-            if (pauseMenuUI != null)
-                pauseMenuUI.SetActive(false);
-
-            Cursor.lockState = CursorLockMode.Locked; 
-            Cursor.visible = false;
-        }
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f;
-        SetGameState(GameState.Playing);
-
-        if (pauseMenuUI != null)
-            pauseMenuUI.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked; 
-        Cursor.visible = false;
-    }
+    
     public void GoToMainMenu()
     {
         Time.timeScale = 1f; 
@@ -116,11 +73,5 @@ public class GameManager : MonoBehaviour
 
 }
 
-public enum GameState
-{
-    Playing,
-    Paused,
-    Victory,
-    Defeat
-}
+
 

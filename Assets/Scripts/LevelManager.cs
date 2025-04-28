@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float tiempoDeNivel = 60f;
     private float tiempoRestante;
     private bool nivelCompletado = false;
+    [SerializeField] public GameObject pauseMenuUI;
+    public GameState currentState = GameState.Playing;
 
     private void Awake()
     {
@@ -28,11 +30,20 @@ public class LevelManager : MonoBehaviour
     {
         ControlarTiempo();
         ControlarCamiones();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TogglePause();
+        }
+    }
+    public void SetGameState(GameState newState)
+    {
+        currentState = newState;
+        Debug.Log("Nuevo estado del juego: " + currentState);
     }
 
     private void ControlarTiempo()
     {
-        if (GameManager.Instance.currentState != GameState.Playing)
+        if (currentState != GameState.Playing)
             return;
 
         if (nivelCompletado)
@@ -49,6 +60,43 @@ public class LevelManager : MonoBehaviour
             textoTiempo.text = "Tiempo: 0s";
             SceneManager.LoadScene("Perder");
         }
+    }
+    public void TogglePause()
+    {
+        if (currentState == GameState.Playing)
+        {
+            Time.timeScale = 0f;
+            SetGameState(GameState.Paused);
+
+            if (LevelManager.Instance.pauseMenuUI != null)
+                LevelManager.Instance.pauseMenuUI.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (currentState == GameState.Paused)
+        {
+            Time.timeScale = 1f;
+            SetGameState(GameState.Playing);
+
+            if (LevelManager.Instance.pauseMenuUI != null)
+                LevelManager.Instance.pauseMenuUI.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        SetGameState(GameState.Playing);
+
+        if (LevelManager.Instance.pauseMenuUI != null)
+            LevelManager.Instance.pauseMenuUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void ControlarCamiones()
@@ -69,4 +117,11 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Nivel completado, avisando al GameManager...");
         GameManager.Instance.PasarAlSiguienteNivel();
     }
+}
+public enum GameState
+{
+    Playing,
+    Paused,
+    Victory,
+    Defeat
 }

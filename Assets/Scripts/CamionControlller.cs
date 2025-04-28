@@ -16,6 +16,7 @@ public class CamionController : MonoBehaviour
             other.gameObject.layer = LayerMask.NameToLayer("Default");
 
             other.tag = "Untagged";
+            other.transform.SetParent(transform, true);
 
             if (cajasRecibidas >= cajasNecesarias)
             {
