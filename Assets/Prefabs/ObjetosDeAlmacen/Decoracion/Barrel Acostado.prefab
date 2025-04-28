@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 768216836062772530}
   - component: {fileID: 1901262332665435279}
   m_Layer: 0
-  m_Name: Barrel
+  m_Name: Barrel Acostado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
