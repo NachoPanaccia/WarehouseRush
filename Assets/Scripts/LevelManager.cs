@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     public void SetGameState(GameState newState)
     {
         currentState = newState;
-        Debug.Log("Nuevo estado del juego: " + currentState);
+        
     }
 
     private void ControlarTiempo()
@@ -106,7 +106,7 @@ public class LevelManager : MonoBehaviour
 
         if (CamionManager.Instance != null && CamionManager.Instance.CantidadCamionesActivos() == 0)
         {
-            Debug.Log("🏁 No quedan camiones, nivel completado");
+            
             nivelCompletado = true;
             GameManager.Instance.PasarAlSiguienteNivel();
         }
@@ -114,7 +114,7 @@ public class LevelManager : MonoBehaviour
 
     public void NivelCompleto()
     {
-        Debug.Log("Nivel completado, avisando al GameManager...");
+        
         GameManager.Instance.PasarAlSiguienteNivel();
     }
 }

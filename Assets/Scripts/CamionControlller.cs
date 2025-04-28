@@ -35,7 +35,7 @@ public class CamionController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("❌ CamionManager no encontrado.");
+            Debug.LogError(" camion mnager error");
         }
 
         Destroy(gameObject);

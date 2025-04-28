@@ -61,12 +61,12 @@ public class GameManager : MonoBehaviour
 
         if (nivelActualIndex < niveles.Count)
         {
-            Debug.Log("Cargando siguiente nivel: " + niveles[nivelActualIndex]);
+            
             SceneManager.LoadScene(niveles[nivelActualIndex]);
         }
         else
         {
-            Debug.Log("¡No hay más niveles! Cargando pantalla de victoria...");
+            
             SceneManager.LoadScene("Ganar"); 
         }
     }
