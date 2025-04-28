@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -6,12 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Juego")]
+    
     public int score = 0;
     public GameState currentState = GameState.Playing;
 
-    [Header("UI")]
+   
     [SerializeField] private GameObject pauseMenuUI;
+
+    [SerializeField] private List<string> niveles;
+    private int nivelActualIndex = 0;
 
     private void Awake()
     {
@@ -57,7 +61,7 @@ public class GameManager : MonoBehaviour
             if (pauseMenuUI != null)
                 pauseMenuUI.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.None; // 🔥 Liberar mouse
+            Cursor.lockState = CursorLockMode.None; 
             Cursor.visible = true;
         }
         else if (currentState == GameState.Paused)
@@ -68,7 +72,7 @@ public class GameManager : MonoBehaviour
             if (pauseMenuUI != null)
                 pauseMenuUI.SetActive(false);
 
-            Cursor.lockState = CursorLockMode.Locked; // 🔒 Bloquear mouse
+            Cursor.lockState = CursorLockMode.Locked; 
             Cursor.visible = false;
         }
     }
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour
         if (pauseMenuUI != null)
             pauseMenuUI.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.Locked; // 🔒 Bloquear mouse
+        Cursor.lockState = CursorLockMode.Locked; 
         Cursor.visible = false;
     }
     public void GoToMainMenu()
@@ -91,10 +95,24 @@ public class GameManager : MonoBehaviour
     }
     public void QuitGame()
     {
-             Application.Quit(); // Cierra el juego (solo funciona en build)
+             Application.Quit(); 
     }
 
+    public void PasarAlSiguienteNivel()
+    {
+        nivelActualIndex++;
 
+        if (nivelActualIndex < niveles.Count)
+        {
+            Debug.Log("Cargando siguiente nivel: " + niveles[nivelActualIndex]);
+            SceneManager.LoadScene(niveles[nivelActualIndex]);
+        }
+        else
+        {
+            Debug.Log("¡No hay más niveles! Cargando pantalla de victoria...");
+            SceneManager.LoadScene("Ganar"); 
+        }
+    }
 
 }
 

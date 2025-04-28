@@ -614,7 +614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 317687137}
   - component: {fileID: 317687138}
-  - component: {fileID: 317687139}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -650,24 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textoTiempo: {fileID: 677223700}
-  tiempoDeNivel: 6
---- !u!114 &317687139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317687136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f51fb2f73c4b414aafc06e2b0a914e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabCamion: {fileID: 8512248480966778200, guid: 027ab18c54d309e41a9d78cabb55acc5, type: 3}
-  puntosSpawn:
-  - {fileID: 1709093775}
-  - {fileID: 961270843}
-  cantidadCamionesEnNivel: 2
+  tiempoDeNivel: 200
 --- !u!1 &450392313
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +955,9 @@ MonoBehaviour:
   score: 0
   currentState: 0
   pauseMenuUI: {fileID: 1413984349}
+  niveles:
+  - Nivel 1
+  - Nivel 2
 --- !u!1 &677223698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1182,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1019262999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019263000}
+  - component: {fileID: 1019263001}
+  m_Layer: 0
+  m_Name: CamionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019263000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019262999}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.063187, y: -1.1580262, z: -5.657109}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1019263001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019262999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f51fb2f73c4b414aafc06e2b0a914e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabCamion: {fileID: 8512248480966778200, guid: 027ab18c54d309e41a9d78cabb55acc5, type: 3}
+  puntosSpawn:
+  - {fileID: 1709093775}
+  - {fileID: 961270843}
+  cantidadCamionesEnNivel: 2
 --- !u!1 &1022242218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,3 +2625,4 @@ SceneRoots:
   - {fileID: 53310901}
   - {fileID: 7071479849102582542}
   - {fileID: 317687137}
+  - {fileID: 1019263000}

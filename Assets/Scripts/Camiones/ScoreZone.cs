@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class ScoreZone : MonoBehaviour
@@ -13,7 +13,7 @@ public class ScoreZone : MonoBehaviour
         {
             cajasRecibidas++;
 
-            // SOLUCI�N: mantener la posici�n global
+            
             other.transform.SetParent(transform, true);
 
             if (cajasRecibidas >= 2)
@@ -25,10 +25,62 @@ public class ScoreZone : MonoBehaviour
 
     private IEnumerator DestruirConDelay()
     {
-        Debug.Log("Cami�n completo. Destruyendo en " + delayAntesDeDestruir + " segundos...");
+        Debug.Log("⏳ Destrucción iniciada, esperando " + delayAntesDeDestruir + " segundos...");
         yield return new WaitForSeconds(delayAntesDeDestruir);
-        Destroy(gameObject);
+
+        // Super Debug
+        Debug.Log("⭐ SuperDebug START ⭐");
+
+        if (CamionManager.Instance == null)
+        {
+            Debug.LogError("❌ CamionManager.Instance ES NULL!!! (No existe el objeto en escena)");
+        }
+        else
+        {
+            Debug.Log("✅ CamionManager.Instance encontrado: " + CamionManager.Instance.gameObject.name);
+        }
+
+        if (transform == null)
+        {
+            Debug.LogError("❌ transform ES NULL!!! (El ScoreZone está mal colocado)");
+        }
+        else
+        {
+            Debug.Log("✅ Transform correcto: " + transform.name);
+        }
+
+        if (transform.root == null)
+        {
+            Debug.LogError("❌ transform.root ES NULL!!! (El objeto raíz no existe)");
+        }
+        else
+        {
+            Debug.Log("✅ transform.root correcto: " + transform.root.name);
+        }
+
+        if (transform.root.gameObject == null)
+        {
+            Debug.LogError("❌ transform.root.gameObject ES NULL!!! (El GameObject raíz no existe)");
+        }
+        else
+        {
+            Debug.Log("✅ GameObject raíz correcto: " + transform.root.gameObject.name);
+        }
+
+        Debug.Log("⭐ SuperDebug END ⭐");
+
+        // Ahora sí intentar eliminar si todo está bien
+        if (CamionManager.Instance != null && transform.root.gameObject != null)
+        {
+            CamionManager.Instance.EliminarCamion(transform.root.gameObject);
+            Destroy(transform.root.gameObject);
+        }
+        else
+        {
+            Debug.LogError("❌ No se puede eliminar camión porque falta alguna referencia.");
+        }
     }
+
 }
 
 
