@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
 
     [SerializeField] private List<string> niveles;
-    private int nivelActualIndex = 0;
+    private int nivelActualIndex = -1;
 
     private void Awake()
     {
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
              Application.Quit(); 
     }
-
+    
     public void PasarAlSiguienteNivel()
     {
         nivelActualIndex++;

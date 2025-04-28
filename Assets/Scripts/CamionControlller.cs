@@ -4,7 +4,7 @@ using System.Collections;
 public class CamionController : MonoBehaviour
 {
     private int cajasRecibidas = 0;
-    [SerializeField] private int cajasNecesarias = 2;
+    [SerializeField] private int cajasNecesarias = 5;
     [SerializeField] private float delayAntesDeDestruir = 2f;
 
     private void OnTriggerEnter(Collider other)
@@ -14,7 +14,8 @@ public class CamionController : MonoBehaviour
             cajasRecibidas++;
 
             other.gameObject.layer = LayerMask.NameToLayer("Default");
-            other.transform.SetParent(transform, true);
+
+            other.tag = "Untagged";
 
             if (cajasRecibidas >= cajasNecesarias)
             {

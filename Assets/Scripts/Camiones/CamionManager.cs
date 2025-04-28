@@ -53,41 +53,35 @@ public class CamionManager : MonoBehaviour
     
     public void EliminarCamion(GameObject camion)
     {
-        Debug.Log("🚚 Intentando eliminar camión: " + (camion != null ? camion.name : "null"));
+       
 
         if (camionesActivos == null)
         {
-            Debug.LogError("❌ camionesActivos es NULL en CamionManager!");
+            
             return;
         }
 
         if (!camionesActivos.Contains(camion))
         {
-            Debug.LogError("❌ camionesActivos NO contiene este camión: " + (camion != null ? camion.name : "null"));
+           
             return;
         }
 
         camionesActivos.Remove(camion);
-        Debug.Log("✅ Camión eliminado. Camiones restantes: " + camionesActivos.Count);
+      
 
         if (camionesActivos.Count == 0)
         {
-            Debug.Log("🏁 ¡Todos los camiones han sido procesados!");
+          
             LevelManager.Instance.NivelCompleto();
         }
         if (camionesActivos.Count == 0)
         {
-            Debug.Log("🏁 ¡Todos los camiones han sido procesados!");
+            
 
-            if (LevelManager.Instance == null)
-            {
-                Debug.LogError("❌ Error: LevelManager.Instance es NULL. No puedo pasar de nivel.");
-            }
-            else
-            {
-                Debug.Log("✅ LevelManager encontrado: " + LevelManager.Instance.gameObject.name);
+                
                 LevelManager.Instance.NivelCompleto();
-            }
+            
         }
     }
     public int CantidadCamionesActivos()
