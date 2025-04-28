@@ -1,63 +1,64 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CreacionDeCajas : MonoBehaviour
 {
-    [SerializeField] private Transform boxSpawnPosition;
-    [SerializeField] private int spawnSpeed;
-    [SerializeField] private int cantidadDeCajas;
-    private int[] arrayCajas;
+    [SerializeField] private int spawnSpeed = 2;
+    [SerializeField] private int cantidadDeCajas = 10;
+    [SerializeField] private CintaTransportadora cintaTransportadora;
 
+    private Queue<int> colaDeCajas;
     private float nextSpawnTime = 0f;
-    private int indexActual;
 
-    [Header("Posibles Cajas")]
+    [Header("Prefabs de cajas")]
     [SerializeField] private GameObject caja1;
     [SerializeField] private GameObject caja2;
 
-
-    void Start()
+    private void Start()
     {
-        ColaDeCajas();
+        GenerarColaDeCajas();
     }
 
-    void Update()
+    private void Update()
     {
-        if (indexActual >= arrayCajas.Length)
+        if (colaDeCajas.Count == 0)
             return;
 
         if (Time.time >= nextSpawnTime)
         {
-            SpawnCaja(arrayCajas[indexActual]);
+            int tipoCaja = colaDeCajas.Dequeue();
+            SpawnCaja(tipoCaja);
             nextSpawnTime = Time.time + spawnSpeed;
-            indexActual++;
         }
     }
 
-    void ColaDeCajas()
+    private void GenerarColaDeCajas()
     {
-        indexActual = 0;
-        arrayCajas = new int[cantidadDeCajas];
+        colaDeCajas = new Queue<int>();
 
         for (int i = 0; i < cantidadDeCajas; i++)
         {
-            arrayCajas[i] = Random.Range(1, 3);
+            colaDeCajas.Enqueue(Random.Range(1, 3));
         }
     }
 
-    void SpawnCaja(int tipoCaja)
+    private void SpawnCaja(int tipoCaja)
     {
         GameObject cajaPrefab = null;
 
-        if (tipoCaja == 1)
+        switch (tipoCaja)
         {
-            cajaPrefab = caja1;
-        }
-        else if (tipoCaja == 2)
-        {
-            cajaPrefab = caja2;
+            case 1:
+                cajaPrefab = caja1;
+                break;
+            case 2:
+                cajaPrefab = caja2;
+                break;
         }
 
         if (cajaPrefab != null)
-            Instantiate(cajaPrefab, boxSpawnPosition.position, Quaternion.identity);
+        {
+            cintaTransportadora.AgregarCaja(cajaPrefab);
+        }
     }
 }
