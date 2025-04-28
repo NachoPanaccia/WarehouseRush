@@ -36,12 +36,14 @@ public class CintaTransportadora : MonoBehaviour
             if (caja != null)
             {
                 caja.transform.position = Vector3.MoveTowards(caja.transform.position, puntoFinal.position, movementSpeed * Time.deltaTime);
+                caja.layer = LayerMask.NameToLayer("Default");
 
                 if (Vector3.Distance(caja.transform.position, puntoFinal.position) < 0.1f)
                 {
                     var siguienteNodo = nodoActual.Next;
                     cajasADesplazar.Remove(nodoActual);
                     nodoActual = siguienteNodo;
+                    caja.layer = LayerMask.NameToLayer("Grabbable");
                     continue;
                 }
             }
