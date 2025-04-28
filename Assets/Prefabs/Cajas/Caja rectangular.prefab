@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja rectangular
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8bf2bd9ec7d102c48a617d4ba4efbc73, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8bf2bd9ec7d102c48a617d4ba4efbc73, type: 3}
+      propertyPath: m_TagString
+      value: Box
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 8bf2bd9ec7d102c48a617d4ba4efbc73, type: 3}
     m_RemovedGameObjects: []

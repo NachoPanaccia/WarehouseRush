@@ -13,6 +13,7 @@ public class CamionController : MonoBehaviour
         {
             cajasRecibidas++;
 
+            other.gameObject.layer = LayerMask.NameToLayer("Default");
             other.transform.SetParent(transform, true);
 
             if (cajasRecibidas >= cajasNecesarias)

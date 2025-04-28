@@ -2578,6 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc367692c5c3fed408dea524788560ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
 --- !u!114 &471455340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,6 +2597,7 @@ MonoBehaviour:
   niveles:
   - Nivel 1
   - Nivel 2
+  - Nivel 3
 --- !u!1 &485746706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4988415402261659429, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
