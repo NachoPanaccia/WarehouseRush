@@ -4,11 +4,10 @@ using System.Collections.Generic;
 public class CreacionDeCajas : MonoBehaviour
 {
     [SerializeField] private int spawnSpeed = 2;
-    [SerializeField] private int cantidadDeCajas = 10;
     [SerializeField] private CintaTransportadora cintaTransportadora;
 
-    private Queue<int> colaDeCajas;
-    private float nextSpawnTime = 0f;
+    private readonly Queue<int> colaDeCajas = new();
+    private float nextSpawnTime;
 
     [Header("Prefabs de cajas")]
     [SerializeField] private GameObject caja1;
@@ -16,13 +15,13 @@ public class CreacionDeCajas : MonoBehaviour
 
     private void Start()
     {
-        GenerarColaDeCajas();
+        EncolarCajaAleatoria();
+        EncolarCajaAleatoria();
     }
 
     private void Update()
     {
-        if (colaDeCajas.Count == 0)
-            return;
+        if (colaDeCajas.Count == 0) return;
 
         if (Time.time >= nextSpawnTime)
         {
@@ -32,14 +31,11 @@ public class CreacionDeCajas : MonoBehaviour
         }
     }
 
-    private void GenerarColaDeCajas()
+    public void EncolarCajaAleatoria()
     {
-        colaDeCajas = new Queue<int>();
-
-        for (int i = 0; i < cantidadDeCajas; i++)
-        {
-            colaDeCajas.Enqueue(Random.Range(1, 3));
-        }
+        int nuevoTipo = Random.Range(1, 3);   // 1 ó 2
+        colaDeCajas.Enqueue(nuevoTipo);
+        Debug.Log($"Se añadió una caja tipo {nuevoTipo}. Total en cola: {colaDeCajas.Count}");
     }
 
     private void SpawnCaja(int tipoCaja)
