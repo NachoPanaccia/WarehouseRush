@@ -2631,10 +2631,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51fb2f73c4b414aafc06e2b0a914e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabCamion: {fileID: 8512248480966778200, guid: 027ab18c54d309e41a9d78cabb55acc5, type: 3}
-  puntosSpawn:
+  puntosInicio:
   - {fileID: 1267939024}
-  cantidadCamionesEnNivel: 1
+  prefabsDeCamiones:
+  - {fileID: 8512248480966778200, guid: 027ab18c54d309e41a9d78cabb55acc5, type: 3}
+  cantidadDeCamiones: 1
 --- !u!1 &1305894082
 GameObject:
   m_ObjectHideFlags: 0

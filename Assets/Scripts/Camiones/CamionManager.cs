@@ -1,91 +1,109 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CamionManager : MonoBehaviour
 {
     public static CamionManager Instance { get; private set; }
 
-    [SerializeField] private GameObject prefabCamion;
-    [SerializeField] private Transform[] puntosSpawn;
-    [SerializeField] private int cantidadCamionesEnNivel = 2;
+    public Transform[] puntosInicio;
+    public GameObject[] prefabsDeCamiones;
+    public int cantidadDeCamiones = 3;
 
-    private PilaDeCamiones pilaCamiones = new PilaDeCamiones();
-    private List<GameObject> camionesActivos = new List<GameObject>();
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    private PilaDeCamionesDinamica pilaCamiones;
 
     void Start()
     {
-        CrearPilaDeCamiones(10);
-        InstanciarCamionesDelNivel();
-    }
+        Instance = this;
 
-    private void CrearPilaDeCamiones(int cantidadTotal)
-    {
-        for (int i = 0; i < cantidadTotal; i++)
+        pilaCamiones = new PilaDeCamionesDinamica();
+        pilaCamiones.InicializarPila();
+
+        for (int i = 0; i < cantidadDeCamiones; i++)
         {
-            GameObject nuevoCamion = prefabCamion;
+            Transform punto = puntosInicio[i % puntosInicio.Length];
+
+            GameObject nuevoCamion = Instantiate(
+                prefabsDeCamiones[Random.Range(0, prefabsDeCamiones.Length)],
+                punto.position,
+                Quaternion.identity);
+
+            // Asegurarse que la luz esté inicialmente desactivada
+            Light luz = nuevoCamion.GetComponentInChildren<Light>();
+            if (luz != null) luz.enabled = false;
+
             pilaCamiones.Apilar(nuevoCamion);
         }
+
+        ActivarLuzCamionActual();
     }
 
-    private void InstanciarCamionesDelNivel()
+    public void DespacharCamion()
     {
-        for (int i = 0; i < cantidadCamionesEnNivel; i++)
-        {
-            if (!pilaCamiones.EstaVacia() && i < puntosSpawn.Length)
-            {
-                GameObject camionAInstanciar = pilaCamiones.Desapilar();
-                GameObject instancia = Instantiate(camionAInstanciar, puntosSpawn[i].position, Quaternion.identity);
-                instancia.name = "Camion_" + i;
+        GameObject camionDespachado = pilaCamiones.Desapilar();
 
-                camionesActivos.Add(instancia); 
-            }
+        if (camionDespachado != null)
+        {
+            Destroy(camionDespachado);
+        }
+
+        if (pilaCamiones.PilaVacia())
+        {
+            Debug.Log("Todos los camiones fueron despachados.");
+        }
+        else
+        {
+            ActivarLuzCamionActual();
         }
     }
 
-    
     public void EliminarCamion(GameObject camion)
     {
-       
-
-        if (camionesActivos == null)
+        if (pilaCamiones.Tope() == camion)
         {
-            
-            return;
+            DespacharCamion();
         }
-
-        if (!camionesActivos.Contains(camion))
+        else
         {
-           
-            return;
-        }
-
-        camionesActivos.Remove(camion);
-      
-
-        if (camionesActivos.Count == 0)
-        {
-          
-            LevelManager.Instance.NivelCompleto();
-        }
-        if (camionesActivos.Count == 0)
-        {
-            
-
-                
-                LevelManager.Instance.NivelCompleto();
-            
+            Debug.LogWarning("El camión no es el último ingresado. No se puede eliminar por LIFO.");
         }
     }
+
+    public GameObject ObtenerCamionActual()
+    {
+        return pilaCamiones.Tope();
+    }
+
     public int CantidadCamionesActivos()
     {
-        return camionesActivos.Count;
+        int contador = 0;
+        NodoPilaCamion actual = GetNodoTope();
+        while (actual != null)
+        {
+            contador++;
+            actual = actual.siguiente;
+        }
+        return contador;
+    }
+
+    private NodoPilaCamion GetNodoTope()
+    {
+        System.Reflection.FieldInfo field = typeof(PilaDeCamionesDinamica).GetField("tope", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        return (NodoPilaCamion)field.GetValue(pilaCamiones);
+    }
+
+    private void ActivarLuzCamionActual()
+    {
+        NodoPilaCamion actual = GetNodoTope();
+
+        while (actual != null)
+        {
+            Light luz = actual.dato.GetComponentInChildren<Light>();
+            if (luz != null)
+            {
+                luz.enabled = (actual == GetNodoTope());
+            }
+            actual = actual.siguiente;
+        }
     }
 }
