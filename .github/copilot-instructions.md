@@ -2,7 +2,7 @@
 - Project name: WarehouseRush
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: Barrier
+  - Name: MaquinaCompleta 
   - Tag: Untagged
-  - Layer: Default
+  - Layer: obstaculo
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
