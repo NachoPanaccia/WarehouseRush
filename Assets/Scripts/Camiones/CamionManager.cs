@@ -16,6 +16,18 @@ public class CamionManager : MonoBehaviour
     {
         Instance = this;
 
+        if (puntosInicio == null || puntosInicio.Length == 0)
+        {
+            Debug.LogError("No se asignaron puntos de inicio para los camiones.");
+            return;
+        }
+
+        if (prefabsDeCamiones == null || prefabsDeCamiones.Length == 0)
+        {
+            Debug.LogError("No se asignaron prefabs de camiones.");
+            return;
+        }
+
         pilaCamiones = new PilaDeCamionesDinamica();
         pilaCamiones.InicializarPila();
 
