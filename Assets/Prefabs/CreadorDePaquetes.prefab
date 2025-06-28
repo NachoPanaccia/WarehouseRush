@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972333ec21c9e8047989b7db06f3dbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: b663aa253be14ce4c8b20454c0a5946f, type: 2}
+  cooldownMaterial: {fileID: 2100000, guid: 6c6f87c9a7f36254aa3e406d1e80b7f8, type: 2}
+  cooldown: 2
   alHacerClick:
     m_PersistentCalls:
       m_Calls:
