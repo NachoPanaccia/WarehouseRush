@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxWooden (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -190,6 +194,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -638,6 +650,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallDoorL (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 042fc6af911d662459b24faa80ec5e4b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -772,6 +788,9 @@ Transform:
   m_Children:
   - {fileID: 317687137}
   - {fileID: 1019263000}
+  - {fileID: 1799582822}
+  - {fileID: 993656112}
+  - {fileID: 656456084}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130280994
@@ -1027,6 +1046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.9810998
@@ -1130,6 +1153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.9810998
@@ -1232,6 +1259,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -1455,6 +1486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1589,6 +1624,10 @@ PrefabInstance:
     - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
       propertyPath: m_Name
       value: Barrel (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1729,6 +1768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -1749,6 +1792,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1870,6 +1921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallDoorL (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2051058261268298484, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5392001
@@ -1987,6 +2042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -2047,6 +2106,10 @@ PrefabInstance:
     - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
       propertyPath: m_Name
       value: Barrier (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
@@ -2339,6 +2402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3237792967511032643, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3166485
@@ -2396,7 +2463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568706868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarrilesEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2475,6 +2542,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2584,6 +2659,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9999999, y: 0.2500003, z: 1.4161463}
   m_Center: {x: -0.000000059604645, y: 0.098122194, z: 0.046621382}
+--- !u!1 &656456082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656456084}
+  - component: {fileID: 656456083}
+  m_Layer: 0
+  m_Name: NavManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &656456083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656456082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c564278b2db06e542a956146288d8a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jugador: {fileID: 7071479849102582543}
+  objetivo: {fileID: 961270843}
+  grafo: {fileID: 993656111}
+  visualizador: {fileID: 1799582820}
+--- !u!4 &656456084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656456082}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 55.109352, y: -11.078661, z: -11.915083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 119835666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &666473363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
@@ -2763,6 +2886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.9810998
@@ -2902,9 +3029,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4397594550778583924, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988415402261659429, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
       propertyPath: m_Name
       value: BoxWooden
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2983,6 +3122,10 @@ PrefabInstance:
     - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
       propertyPath: m_Name
       value: Barrel (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3109,6 +3252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -3160,6 +3307,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -3374,7 +3525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842754707}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarrerasEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3427,6 +3578,10 @@ PrefabInstance:
     - target: {fileID: 3810148002973527318, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
       propertyPath: m_Name
       value: BoxWooden (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810148002973527318, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4587916532995520428, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3577,6 +3732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3237792967511032643, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3166485
@@ -3689,6 +3848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3739,6 +3902,10 @@ PrefabInstance:
     - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3237792967511032643, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3852,6 +4019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3943,6 +4114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxWooden (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3962,6 +4137,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4132,6 +4315,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 92253482}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &993656110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 993656112}
+  - component: {fileID: 993656111}
+  m_Layer: 0
+  m_Name: GrafoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &993656111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993656110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e077289d3fedc0449c07484f0923ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "tama\xF1oGrilla": {x: 22, y: 40}
+  "tama\xF1oCelda": 2
+  capaObstaculo:
+    serializedVersion: 2
+    m_Bits: 512
+  jugador: {fileID: 993656112}
+--- !u!4 &993656112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993656110}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 39.29, y: -9.93, z: -11.915083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 119835666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019262999
 GameObject:
@@ -4331,6 +4564,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.27
@@ -4451,6 +4692,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.54418
@@ -4553,6 +4802,10 @@ PrefabInstance:
     - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
       propertyPath: m_Name
       value: BoxWooden (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4926,6 +5179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -4944,7 +5201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163769971}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallsEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5015,6 +5272,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -5183,7 +5444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212465954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PaletteEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5240,6 +5501,10 @@ PrefabInstance:
     - target: {fileID: 3810148002973527318, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
       propertyPath: m_Name
       value: BoxWooden (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810148002973527318, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4587916532995520428, guid: 2507e3391f9d5f443b26d889334d12ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5300,6 +5565,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -5434,6 +5703,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5728,6 +6005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5778,6 +6059,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5981,6 +6270,10 @@ PrefabInstance:
     - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
       propertyPath: m_Name
       value: Barrel (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6247,6 +6540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallDoorL (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2051058261268298484, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5392001
@@ -6315,6 +6612,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6476,6 +6781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -6576,6 +6885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -6644,6 +6957,10 @@ PrefabInstance:
     - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
       propertyPath: m_Name
       value: Barrier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
@@ -6779,6 +7096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6827,7 +7148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582199551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CajasEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6870,6 +7191,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -7000,6 +7325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3237792967511032643, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3166485
@@ -7059,6 +7388,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7179,6 +7516,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7502,6 +7847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxWooden (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7550,7 +7899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1695166527}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConosEnEscena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7636,6 +7985,10 @@ PrefabInstance:
     - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
       propertyPath: m_Name
       value: Barrel (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7790,6 +8143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -7867,6 +8224,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7987,6 +8352,10 @@ PrefabInstance:
     - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856728160029940217, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3237792967511032643, guid: 7fc80cff388d8df4f9a5137d1e6a6ed5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8124,6 +8493,158 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2646601, y: 1.2646601, z: 1.2646604}
   m_Center: {x: 0, y: 0.63112104, z: 0.00000008940697}
+--- !u!1 &1799582819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799582822}
+  - component: {fileID: 1799582821}
+  - component: {fileID: 1799582820}
+  m_Layer: 0
+  m_Name: camino
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1799582820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799582819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ea4a86161a504481f6ae3f090b770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!120 &1799582821
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799582819}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.3
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.116241455, g: 0, b: 1, a: 1}
+      key1: {r: 0.116241455, g: 0, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 1
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 90
+    numCapVertices: 44
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 0.52, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
+--- !u!4 &1799582822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799582819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 55.109352, y: -11.078661, z: -11.915083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 119835666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1810119553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8135,6 +8656,10 @@ PrefabInstance:
     - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_Name
       value: WallDoorL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2051058261268298484, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_LocalScale.x
@@ -8205,6 +8730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone
       objectReference: {fileID: 0}
+    - target: {fileID: 5820963020822956645, guid: 6930455d51111dd43993e54dc8b6476e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6594368997945643231, guid: 6930455d51111dd43993e54dc8b6476e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.9973965
@@ -8262,7 +8791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816263601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ---DECORACION---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8358,6 +8887,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8531,6 +9068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8633,6 +9174,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 042fc6af911d662459b24faa80ec5e4b, type: 3}
       propertyPath: m_Name
       value: WallDoorL (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 042fc6af911d662459b24faa80ec5e4b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8737,6 +9282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallDoorL (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 042fc6af911d662459b24faa80ec5e4b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8840,6 +9389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8921,6 +9474,10 @@ PrefabInstance:
     - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_Name
       value: Barrier (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308826938866473205, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8648374428341977679, guid: df9a8d94de14f974eba482b719b1f7f9, type: 3}
       propertyPath: m_LocalScale.x
@@ -9350,6 +9907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9400,6 +9961,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9463,6 +10032,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9614,6 +10191,14 @@ PrefabInstance:
     - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9786,6 +10371,10 @@ PrefabInstance:
     - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
       propertyPath: m_Name
       value: Barrel (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10002,6 +10591,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4441814
@@ -10170,6 +10767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -10320,9 +10921,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4397594550778583924, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988415402261659429, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
       propertyPath: m_Name
       value: BoxWooden (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10349,6 +10962,10 @@ PrefabInstance:
     - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_Name
       value: WallDoorL
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674497057709531214, guid: c813395cf09200449b63b2f487f667fe, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2051058261268298484, guid: c813395cf09200449b63b2f487f667fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10487,6 +11104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 5264627812799981442, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3507224201104213158, guid: 3e2c741d787c576429b66795f143f2e5, type: 3}
     m_RemovedGameObjects: []
@@ -10552,6 +11173,10 @@ PrefabInstance:
     - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
       propertyPath: m_Name
       value: BoxWooden (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171157456968060243, guid: ff9ee8621df0da542987927cf6b2b109, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10728,6 +11353,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab82931706cef1f4d81e6315dacf1852, type: 3}
+--- !u!4 &7071479849102582543 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3451175501099290868, guid: ab82931706cef1f4d81e6315dacf1852, type: 3}
+  m_PrefabInstance: {fileID: 7071479849102582542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7955784518248214459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10736,9 +11366,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1212465954}
     m_Modifications:
+    - target: {fileID: 1682829811794390810, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024418730997216390, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905288611130483098, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3998118586754781122, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
       propertyPath: m_Name
       value: PaletteWooden (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998118586754781122, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756467584236068599, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6907159392246334952, guid: e6caf92afb9bad843a051b1ab649a2d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10793,6 +11443,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 568706868}
     m_Modifications:
+    - target: {fileID: 1043629670543195747, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248490748400567915, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481808602902443486, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1886893880422417536, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.081001
@@ -10833,9 +11495,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6413019593366487186, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079549507903598653, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8239327639955076769, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
       propertyPath: m_Name
       value: Barrel (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239327639955076769, guid: 78cfe0b6e78b8e2439e5cd13e8771401, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10906,6 +11580,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaletteWooden
       objectReference: {fileID: 0}
+    - target: {fileID: 180160955412678550, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521241077200039520, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5941053753124221441, guid: 9e0f51729a95c044a88055a2797b1dbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.10018
@@ -10968,6 +11650,10 @@ PrefabInstance:
     - target: {fileID: 6034264374685446007, guid: b0b23cae3637c02409d9c7d4b5130d83, type: 3}
       propertyPath: m_Name
       value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034264374685446007, guid: b0b23cae3637c02409d9c7d4b5130d83, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7860080216188696404, guid: b0b23cae3637c02409d9c7d4b5130d83, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11066,9 +11752,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4397594550778583924, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988415402261659429, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
       propertyPath: m_Name
       value: BoxWooden
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415905782948060294, guid: 14550d9ff2a1d674a9db8804f7dc1bce, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
