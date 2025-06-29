@@ -16,7 +16,6 @@ public class CreacionDeCajas : MonoBehaviour
     private void Start()
     {
         EncolarCajaAleatoria();
-        EncolarCajaAleatoria();
     }
 
     private void Update()
@@ -33,7 +32,7 @@ public class CreacionDeCajas : MonoBehaviour
 
     public void EncolarCajaAleatoria()
     {
-        int nuevoTipo = Random.Range(1, 3);   // 1 ó 2
+        int nuevoTipo = Random.Range(1, 3);
         colaDeCajas.Enqueue(nuevoTipo);
         Debug.Log($"Se añadió una caja tipo {nuevoTipo}. Total en cola: {colaDeCajas.Count}");
     }

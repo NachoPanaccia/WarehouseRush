@@ -45,12 +45,12 @@ public class LevelManager : MonoBehaviour
         if (tiempoRestante > 0f)
         {
             tiempoRestante -= Time.deltaTime;
-            textoTiempo.text = $"Tiempo: {Mathf.CeilToInt(tiempoRestante)}s";
+            textoTiempo.text = "Tiempo: " + FormatearTiempo(tiempoRestante);
         }
         else
         {
             tiempoRestante = 0f;
-            textoTiempo.text = "Tiempo: 0s";
+            textoTiempo.text = "Tiempo: 00:00:00:00";
             SceneManager.LoadScene("Perder");
         }
     }
@@ -118,7 +118,18 @@ public class LevelManager : MonoBehaviour
         else puntos = 50;
 
         GameManager.Instance.AddScore(puntos);
-        Debug.Log($"Nivel completado en {tiempoUsado:0.0}s  →  +{puntos} pts");
+        Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)}  →  +{puntos} pts");
+    }
+
+    private static string FormatearTiempo(float segundos)
+    {
+        var t = System.TimeSpan.FromSeconds(segundos);
+        
+        return string.Format("{0:00}:{1:00}:{2:00}:{3:00}",
+                             t.Hours,
+                             t.Minutes,
+                             t.Seconds,
+                             t.Milliseconds / 10);
     }
 }
 
