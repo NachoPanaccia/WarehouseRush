@@ -38,7 +38,7 @@ public class CamionManager : MonoBehaviour
             GameObject nuevoCamion = Instantiate(
                 prefabsDeCamiones[Random.Range(0, prefabsDeCamiones.Length)],
                 punto.position,
-                Quaternion.identity);
+                punto.rotation);
 
             // Asegurarse que la luz esté inicialmente desactivada
             Light luz = nuevoCamion.GetComponentInChildren<Light>();
