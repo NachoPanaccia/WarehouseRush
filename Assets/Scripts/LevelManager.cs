@@ -137,9 +137,18 @@ public class LevelManager : MonoBehaviour
         float pr = tiempoUsado / tiempoDeNivel;
 
         int puntos;
-        if (pr <= 1f / 3f) { puntos = 200; estrellas = 3; }
-        else if (pr <= 1f / 2f) { puntos = 100; estrellas = 2; }
-        else { puntos = 50; estrellas = 1; }
+        if (pr <= 0.25f) // ≤ 25 %
+        {
+            puntos = 200; estrellas = 3;
+        }
+        else if (pr <= 0.5f) // >25 % y ≤50 %
+        {
+            puntos = 100; estrellas = 2;
+        }
+        else // >50 % (hasta 100 %)
+        {
+            puntos = 50; estrellas = 1;
+        }
 
         GameManager.Instance.AddScore(puntos);
         Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)} → +{puntos} pts");

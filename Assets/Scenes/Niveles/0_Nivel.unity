@@ -2858,8 +2858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   niveles:
-  - Nivel 0
-  - Nivel 1
+  - 1_Nivel
 --- !u!1 &1348084438
 GameObject:
   m_ObjectHideFlags: 0

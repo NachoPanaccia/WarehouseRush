@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MenuPrincipal : MonoBehaviour
 {
     [Header("Nombres de escenas")]
-    private string nombreNivel = "Nivel 0";
+    private string nombreNivel = "0_Nivel";
     private string nombrePuntajes = "Puntajes";
 
     [Header("Panel de Opciones (futuro)")]
