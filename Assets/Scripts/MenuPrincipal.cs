@@ -1,34 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuPrincipal : MonoBehaviour
 {
-    [Header("Nombres de escenas")]
-    private string nombreNivel = "0_Nivel";
-    private string nombrePuntajes = "Puntajes";
-
-    [Header("Panel de Opciones (futuro)")]
+    [Header("Panel de Opciones")] //no implementado
     [SerializeField] private GameObject opcionesPanel;
-    
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(nombreNivel);
+        GameManager.Instance.IniciarJuego();
     }
-    
+
     public void OpenScores()
     {
-        SceneManager.LoadScene(nombrePuntajes);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Puntajes");
     }
-    
+
     public void OpenOptions()
     {
         if (opcionesPanel != null)
             opcionesPanel.SetActive(true);
     }
-    
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
+    public void QuitGame() => GameManager.Instance.QuitGame();
 }

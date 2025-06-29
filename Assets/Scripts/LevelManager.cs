@@ -149,8 +149,7 @@ public class LevelManager : MonoBehaviour
         {
             puntos = 50; estrellas = 1;
         }
-
-        GameManager.Instance.AddScore(puntos);
+        
         Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)} → +{puntos} pts");
         return puntos;
     }
