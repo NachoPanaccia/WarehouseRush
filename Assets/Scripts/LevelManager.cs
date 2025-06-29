@@ -36,11 +36,10 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
             TogglePause();
     }
-    
+
     private void ControlarTiempo()
     {
-        if (currentState != GameState.Playing || nivelCompletado)
-            return;
+        if (currentState != GameState.Playing || nivelCompletado) return;
 
         if (tiempoRestante > 0f)
         {
@@ -51,10 +50,17 @@ public class LevelManager : MonoBehaviour
         {
             tiempoRestante = 0f;
             textoTiempo.text = "Tiempo: 00:00:00:00";
-            SceneManager.LoadScene("Perder");
+
+            GameManager.Instance.EndLevel(
+                win: false,
+                puntosNivel: 0,
+                tiempo: tiempoDeNivel,
+                motivo: "Tiempo agotado",
+                estrellas: 0
+            );
         }
     }
-    
+
     public void TogglePause()
     {
         if (currentState == GameState.Playing)
@@ -97,28 +103,21 @@ public class LevelManager : MonoBehaviour
 
     
     public void NivelCompleto() => CompletarNivel();
-    
+
     private void CompletarNivel()
     {
         if (nivelCompletado) return;
         nivelCompletado = true;
 
-        OtorgarPuntaje();
-        GameManager.Instance.PasarAlSiguienteNivel();
-    }
+        int puntosNivel = CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado);
 
-    private void OtorgarPuntaje()
-    {
-        float tiempoUsado = tiempoDeNivel - tiempoRestante;
-        float proporcionUsada = tiempoUsado / tiempoDeNivel;
-
-        int puntos = 0;
-        if (proporcionUsada <= 1f / 3f) puntos = 200;
-        else if (proporcionUsada <= 1f / 2f) puntos = 100;
-        else puntos = 50;
-
-        GameManager.Instance.AddScore(puntos);
-        Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)}  →  +{puntos} pts");
+        GameManager.Instance.EndLevel(
+            win: true,
+            puntosNivel: puntosNivel,
+            tiempo: tiempoUsado,
+            motivo: string.Empty,
+            estrellas: estrellas
+        );
     }
 
     private static string FormatearTiempo(float segundos)
@@ -130,6 +129,21 @@ public class LevelManager : MonoBehaviour
                              t.Minutes,
                              t.Seconds,
                              t.Milliseconds / 10);
+    }
+
+    private int CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado)
+    {
+        tiempoUsado = tiempoDeNivel - tiempoRestante;
+        float pr = tiempoUsado / tiempoDeNivel;
+
+        int puntos;
+        if (pr <= 1f / 3f) { puntos = 200; estrellas = 3; }
+        else if (pr <= 1f / 2f) { puntos = 100; estrellas = 2; }
+        else { puntos = 50; estrellas = 1; }
+
+        GameManager.Instance.AddScore(puntos);
+        Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)} → +{puntos} pts");
+        return puntos;
     }
 }
 
