@@ -2,7 +2,7 @@
 - Project name: WarehouseRush
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: MaquinaCompleta 
+  - Name: GrafoManager
   - Tag: Untagged
-  - Layer: obstaculo
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

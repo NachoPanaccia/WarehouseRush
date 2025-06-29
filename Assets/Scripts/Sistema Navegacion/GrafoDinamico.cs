@@ -8,7 +8,7 @@ public class GrafoDinamico : MonoBehaviour
     public LayerMask capaObstaculo;
     public Transform jugador;
 
-    public NodoGrafo[,] nodos;
+    private NodoGrafo[,] nodos;
 
     public void GenerarGrafo()
     {
@@ -75,3 +75,4 @@ public class GrafoDinamico : MonoBehaviour
         return masCercano;
     }
 }
+
