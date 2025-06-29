@@ -6,118 +6,122 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
+    [Header("Tiempo")]
     [SerializeField] private TMP_Text textoTiempo;
-    [SerializeField] private float tiempoDeNivel = 60f;
+    [SerializeField] private float tiempoDeNivel;
     private float tiempoRestante;
-    private bool nivelCompletado = false;
-    [SerializeField] public GameObject pauseMenuUI;
-    public GameState currentState = GameState.Playing;
 
+    [Header("Pausa")]
+    [SerializeField] public GameObject pauseMenuUI;
+    
+    private bool nivelCompletado = false;
+    public GameState currentState = GameState.Playing;
+    
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         tiempoRestante = tiempoDeNivel;
     }
 
-    void Update()
+    private void Update()
     {
         ControlarTiempo();
         ControlarCamiones();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TogglePause();
-        }
-    }
-    public void SetGameState(GameState newState)
-    {
-        currentState = newState;
-        
-    }
 
+        if (Input.GetKeyDown(KeyCode.P))
+            TogglePause();
+    }
+    
     private void ControlarTiempo()
     {
-        if (currentState != GameState.Playing)
+        if (currentState != GameState.Playing || nivelCompletado)
             return;
 
-        if (nivelCompletado)
-            return;
-
-        if (tiempoRestante > 0)
+        if (tiempoRestante > 0f)
         {
             tiempoRestante -= Time.deltaTime;
-            textoTiempo.text = "Tiempo: " + Mathf.CeilToInt(tiempoRestante).ToString() + "s";
+            textoTiempo.text = $"Tiempo: {Mathf.CeilToInt(tiempoRestante)}s";
         }
         else
         {
-            tiempoRestante = 0;
+            tiempoRestante = 0f;
             textoTiempo.text = "Tiempo: 0s";
             SceneManager.LoadScene("Perder");
         }
     }
+    
     public void TogglePause()
     {
         if (currentState == GameState.Playing)
         {
             Time.timeScale = 0f;
-            SetGameState(GameState.Paused);
+            currentState = GameState.Paused;
 
-            if (LevelManager.Instance.pauseMenuUI != null)
-                LevelManager.Instance.pauseMenuUI.SetActive(true);
+            if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else if (currentState == GameState.Paused)
         {
-            Time.timeScale = 1f;
-            SetGameState(GameState.Playing);
-
-            if (LevelManager.Instance.pauseMenuUI != null)
-                LevelManager.Instance.pauseMenuUI.SetActive(false);
-
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            ResumeGame();
         }
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        SetGameState(GameState.Playing);
+        currentState = GameState.Playing;
 
-        if (LevelManager.Instance.pauseMenuUI != null)
-            LevelManager.Instance.pauseMenuUI.SetActive(false);
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
+    
     private void ControlarCamiones()
     {
-        if (nivelCompletado)
-            return;
+        if (nivelCompletado) return;
 
-        if (CamionManager.Instance != null && CamionManager.Instance.CantidadCamionesActivos() == 0)
+        if (CamionManager.Instance != null &&
+            CamionManager.Instance.CantidadCamionesActivos() == 0)
         {
-            
-            nivelCompletado = true;
-            GameManager.Instance.PasarAlSiguienteNivel();
+            CompletarNivel();
         }
     }
 
-    public void NivelCompleto()
+    
+    public void NivelCompleto() => CompletarNivel();
+    
+    private void CompletarNivel()
     {
-        
+        if (nivelCompletado) return;
+        nivelCompletado = true;
+
+        OtorgarPuntaje();
         GameManager.Instance.PasarAlSiguienteNivel();
     }
+
+    private void OtorgarPuntaje()
+    {
+        float tiempoUsado = tiempoDeNivel - tiempoRestante;
+        float proporcionUsada = tiempoUsado / tiempoDeNivel;
+
+        int puntos = 0;
+        if (proporcionUsada <= 1f / 3f) puntos = 200;
+        else if (proporcionUsada <= 1f / 2f) puntos = 100;
+        else puntos = 50;
+
+        GameManager.Instance.AddScore(puntos);
+        Debug.Log($"Nivel completado en {tiempoUsado:0.0}s  →  +{puntos} pts");
+    }
 }
+
 public enum GameState
 {
     Playing,
