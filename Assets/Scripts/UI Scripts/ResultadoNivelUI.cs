@@ -25,11 +25,11 @@ public class ResultadoNivelUI : MonoBehaviour
     [SerializeField] private Button btnSiguienteNivel;
     [SerializeField] private Button btnReiniciarJuego;
     [SerializeField] private Button btnMenuPrincipal;
-    
+
     private void Start()
     {
         var res = GameManager.Instance.ultimoResultado;
-        
+
         if (res.win)
         {
             panelVictoria.SetActive(true);
@@ -45,6 +45,13 @@ public class ResultadoNivelUI : MonoBehaviour
 
             btnSiguienteNivel.gameObject.SetActive(true);
             btnReiniciarJuego.gameObject.SetActive(false);
+
+            if (res.nuevoRecord && NombreRecordPopup.Instance != null)
+            {
+                NombreRecordPopup.Instance.SolicitarNombre(
+                    n => HighScoreManager.Instance
+                            .SetNombreLevel(res.recordLevelIdx, res.recordPos, n));
+            }
         }
         else
         {
@@ -58,18 +65,18 @@ public class ResultadoNivelUI : MonoBehaviour
             btnSiguienteNivel.gameObject.SetActive(false);
             btnReiniciarJuego.gameObject.SetActive(true);
         }
-        
+
         btnReintentar.onClick.AddListener(GameManager.Instance.ReintentarNivel);
         btnMenuPrincipal.onClick.AddListener(GameManager.Instance.GoToMainMenu);
         if (btnSiguienteNivel.gameObject.activeSelf)
             btnSiguienteNivel.onClick.AddListener(GameManager.Instance.CargarSiguienteNivel);
         if (btnReiniciarJuego.gameObject.activeSelf)
             btnReiniciarJuego.onClick.AddListener(GameManager.Instance.ReiniciarJuegoDesdeCero);
-        
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    
+
     private static string FormatearTiempo(float segundos)
     {
         var t = System.TimeSpan.FromSeconds(segundos);

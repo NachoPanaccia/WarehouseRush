@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoresPanelController : MonoBehaviour
 {
-    [Header("Panel raÌz")]
+    [Header("Panel ra√≠z")]
     [SerializeField] private GameObject panelScores;
 
     [Header("Secciones")]
@@ -38,10 +38,9 @@ public class ScoresPanelController : MonoBehaviour
     {
         panelScores.SetActive(true);
 
-        if (dropdownLevels.options.Count == 0)
-        {
-            dropdownLevels.AddOptions(new List<string>(GameManager.Instance.Niveles));
-        }
+        dropdownLevels.ClearOptions();
+        dropdownLevels.AddOptions(new List<string>(GameManager.Instance.Niveles));
+        dropdownLevels.value = 0;
 
         ShowBestScores();
     }
@@ -53,7 +52,7 @@ public class ScoresPanelController : MonoBehaviour
 
     #endregion
 
-    #region PestaÒa ìMejores Puntajesî
+    #region Pesta√±a ‚ÄúMejores Puntajes‚Äù
 
     private void ShowBestScores()
     {
@@ -68,7 +67,7 @@ public class ScoresPanelController : MonoBehaviour
 
     #endregion
 
-    #region PestaÒa ìMejores Tiemposî
+    #region Pesta√±a ‚ÄúMejores Tiempos‚Äù
 
     private void ShowBestTimes()
     {
@@ -78,17 +77,19 @@ public class ScoresPanelController : MonoBehaviour
         ShowTimesForLevel(dropdownLevels.value);
     }
 
-    private void ShowTimesForLevel(int levelIdx)
+    private void ShowTimesForLevel(int optionIdx)
     {
+        int buildIdx = optionIdx + 1;                     // saltar la escena 0
         PopulateList(
-            HighScoreManager.Instance.GetLevelTimes(levelIdx),
+            HighScoreManager.Instance.GetLevelTimes(buildIdx),
             contentTimes,
             isTime: true);
     }
 
+
     #endregion
 
-    #region Helpers genÈricos
+    #region Helpers gen√©ricos
 
     private void PopulateList(List<Record> list, Transform container, bool isTime)
     {
@@ -96,7 +97,7 @@ public class ScoresPanelController : MonoBehaviour
 
         if (list == null || list.Count == 0)
         {
-            CreateRow(container, "-", "ó", "Sin registros");
+            CreateRow(container, "-", "‚Äî", "Sin registros");
             return;
         }
 

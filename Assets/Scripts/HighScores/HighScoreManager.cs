@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -13,14 +14,22 @@ public class HighScoreManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private string PathLevel(int i) => Path.Combine(Application.persistentDataPath, $"TopTimes_Level_{i}.json");
+    private string PathLevel(int levelIdx)
+    {
+        string sceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(levelIdx));
+
+        sceneName = sceneName.Replace(' ', '_');
+
+        return Path.Combine(Application.persistentDataPath, $"TopTimes_{sceneName}.json");
+    }
+
     private string PathGlobal() => Path.Combine(Application.persistentDataPath, "TopScores_Global.json");
 
-    public bool TryInsertLevelTime(int level, float t, bool menorEsMejor, out int pos)
+    public bool TryInsertLevelTime(int levelIdx, float t, bool menorEsMejor, out int pos)
     {
-        var list = Load(PathLevel(level));
+        var list = Load(PathLevel(levelIdx));
         bool ok = InsertRecord(list, t, menorEsMejor, out pos);
-        if (ok) Save(PathLevel(level), list);
+        if (ok) Save(PathLevel(levelIdx), list);
         return ok;
     }
 
@@ -32,12 +41,13 @@ public class HighScoreManager : MonoBehaviour
         return ok;
     }
 
-    public void SetNombreLevel(int level, int pos, string nombre)
+    public void SetNombreLevel(int levelIdx, int pos, string nombre)
     {
-        var list = Load(PathLevel(level));
+        var list = Load(PathLevel(levelIdx));
         if (ActualizarNombre(list, pos, nombre))
-            Save(PathLevel(level), list);
+            Save(PathLevel(levelIdx), list);
     }
+
     public void SetNombreGlobal(int pos, string nombre)
     {
         var list = Load(PathGlobal());
@@ -45,7 +55,7 @@ public class HighScoreManager : MonoBehaviour
             Save(PathGlobal(), list);
     }
 
-    public List<Record> GetLevelTimes(int level) => Load(PathLevel(level));
+    public List<Record> GetLevelTimes(int levelIdx) => Load(PathLevel(levelIdx));
     public List<Record> GetGlobalScores() => Load(PathGlobal());
 
     private List<Record> Load(string path)
@@ -54,6 +64,7 @@ public class HighScoreManager : MonoBehaviour
         var wrap = JsonUtility.FromJson<RecordListWrapper>(File.ReadAllText(path));
         return wrap.records ?? new List<Record>();
     }
+
     private void Save(string path, List<Record> list)
     {
         var wrap = new RecordListWrapper { records = list };
@@ -64,10 +75,13 @@ public class HighScoreManager : MonoBehaviour
     {
         list.Add(new Record { nombre = "???", valor = val });
 
-        if (menor) QuickSorter.QuickSort(list, (a, b) => a.valor.CompareTo(b.valor)); // asc
-        else QuickSorter.QuickSort(list, (a, b) => b.valor.CompareTo(a.valor)); // desc
+        if (menor)
+            QuickSorter.QuickSort(list, (a, b) => a.valor.CompareTo(b.valor));
+        else
+            QuickSorter.QuickSort(list, (a, b) => b.valor.CompareTo(a.valor));
 
         if (list.Count > MaxRecords) list.RemoveAt(list.Count - 1);
+
         pos = list.FindIndex(r => r.nombre == "???");
         return pos != -1;
     }

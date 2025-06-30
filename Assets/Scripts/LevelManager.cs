@@ -111,25 +111,17 @@ public class LevelManager : MonoBehaviour
 
         int puntosNivel = CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado);
 
-        bool nuevoRecord =
-            HighScoreManager.Instance.TryInsertLevelTime(
-            SceneManager.GetActiveScene().buildIndex,
-            tiempoUsado,
-            menorEsMejor: true,
-            out int pos);
-
-        if (nuevoRecord)
-        {
-            NombreRecordPopup.Instance.SolicitarNombre((nombre) => { HighScoreManager.Instance.SetNombreLevel(SceneManager.GetActiveScene().buildIndex, pos, nombre); });
-        }
+        bool nuevoRecord = HighScoreManager.Instance.TryInsertLevelTime(SceneManager.GetActiveScene().buildIndex, tiempoUsado, menorEsMejor: true, out int pos);
 
         GameManager.Instance.EndLevel(
             win: true,
             puntosNivel: puntosNivel,
             tiempo: tiempoUsado,
             motivo: string.Empty,
-            estrellas: estrellas
-        );
+            estrellas: estrellas,
+            nuevoRecord: nuevoRecord,
+            recordLevelIdx: SceneManager.GetActiveScene().buildIndex,
+            recordPos: pos);
     }
 
     private static string FormatearTiempo(float segundos)

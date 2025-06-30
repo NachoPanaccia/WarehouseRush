@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     private List<int> puntosPorNivel = new();
 
-    [SerializeField] private List<string> niveles = new();
+    [SerializeField] private List<string> niveles = new();   // mismos nombres que en Build Settings
+    private List<int> buildIndices = new();
     public IReadOnlyList<string> Niveles => niveles;
     private int nivelActualIndex = -1;
 
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
         public float tiempo;
         public int estrellas;
         public string motivoDerrota;
+        public bool nuevoRecord;
+        public int recordLevelIdx;
+        public int recordPos;
     }
     public ResultadoNivel ultimoResultado { get; private set; }
 
@@ -35,7 +39,13 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < niveles.Count; i++) puntosPorNivel.Add(0);
         }
         else Destroy(gameObject);
+
+        buildIndices.Clear();
+        foreach (var n in niveles)
+            buildIndices.Add(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/{n}.unity"));
     }
+
+    public int BuildIndexDeOpcion(int opcion) => buildIndices[opcion];
 
     public void IniciarJuego()
     {
@@ -52,7 +62,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Puntaje actual: " + score);
     }
 
-    public void EndLevel(bool win, int puntosNivel, float tiempo, string motivo, int estrellas)
+    public void EndLevel(bool win, int puntosNivel, float tiempo, string motivo, int estrellas, bool nuevoRecord = false, int recordLevelIdx = -1, int recordPos = -1)
     {
         if (win)
         {
@@ -61,19 +71,22 @@ public class GameManager : MonoBehaviour
 
             AddScore(delta);
             puntosPorNivel[nivelActualIndex] = puntosNivel;
+            Debug.Log(" cargando next level ");
         }
 
         ultimoResultado = new ResultadoNivel
-
         {
             win = win,
             puntosNivel = puntosNivel,
             puntajeTotal = score,
             tiempo = tiempo,
             motivoDerrota = motivo,
-            estrellas = estrellas
+            estrellas = estrellas,
+            nuevoRecord = nuevoRecord,
+            recordLevelIdx = recordLevelIdx,
+            recordPos = recordPos
         };
-
+        Debug.Log($"EndLevel ⇒ win:{win}, tiempo:{tiempo} – cargando ResultadoNivel");
         SceneManager.LoadScene("ResultadoNivel");
     }
 
