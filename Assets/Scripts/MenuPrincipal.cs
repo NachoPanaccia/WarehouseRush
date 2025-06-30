@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MenuPrincipal : MonoBehaviour
 {
+    [SerializeField] private ScoresPanelController scoresCtrl;
+
     [Header("Panel de Opciones")] //no implementado
     [SerializeField] private GameObject opcionesPanel;
 
@@ -12,7 +14,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void OpenScores()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Puntajes");
+        scoresCtrl.Open();
     }
 
     public void OpenOptions()

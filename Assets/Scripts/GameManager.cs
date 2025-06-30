@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private List<int> puntosPorNivel = new();
 
     [SerializeField] private List<string> niveles = new();
+    public IReadOnlyList<string> Niveles => niveles;
     private int nivelActualIndex = -1;
 
     public struct ResultadoNivel
