@@ -134,6 +134,10 @@ public class LevelManager : MonoBehaviour
                              t.Seconds,
                              t.Milliseconds / 10);
     }
+    public void VolverAlMenuPrincipal()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
 
     private int CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado)
     {
