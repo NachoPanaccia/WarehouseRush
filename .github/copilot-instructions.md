@@ -2,7 +2,7 @@
 - Project name: WarehouseRush
 - Unity version: Unity 6000.0.34f1
 - Active game object:
-  - Name: ---DECORACION---
+  - Name: Pickup_Truck_1
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
