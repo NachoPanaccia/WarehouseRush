@@ -1982,6 +1982,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1906147308}
   m_SourcePrefab: {fileID: 100100000, guid: c813395cf09200449b63b2f487f667fe, type: 3}
+--- !u!1 &376565175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 376565176}
+  m_Layer: 0
+  m_Name: RespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &376565176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376565175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.673, y: 1.1948118, z: 23.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &404634164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11341,6 +11372,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3815188984100076650, guid: ab82931706cef1f4d81e6315dacf1852, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 376565176}
+    - target: {fileID: 3815188984100076650, guid: ab82931706cef1f4d81e6315dacf1852, type: 3}
       propertyPath: movementSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -11796,3 +11831,4 @@ SceneRoots:
   - {fileID: 1816263601}
   - {fileID: 92253482}
   - {fileID: 900505017}
+  - {fileID: 376565176}
