@@ -111,6 +111,18 @@ public class LevelManager : MonoBehaviour
 
         int puntosNivel = CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado);
 
+        bool nuevoRecord =
+            HighScoreManager.Instance.TryInsertLevelTime(
+            SceneManager.GetActiveScene().buildIndex,
+            tiempoUsado,
+            menorEsMejor: true,
+            out int pos);
+
+        if (nuevoRecord)
+        {
+            NombreRecordPopup.Instance.SolicitarNombre((nombre) => { HighScoreManager.Instance.SetNombreLevel(SceneManager.GetActiveScene().buildIndex, pos, nombre); });
+        }
+
         GameManager.Instance.EndLevel(
             win: true,
             puntosNivel: puntosNivel,

@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         }
 
         ultimoResultado = new ResultadoNivel
+
         {
             win = win,
             puntosNivel = puntosNivel,
@@ -85,9 +86,19 @@ public class GameManager : MonoBehaviour
     {
         nivelActualIndex++;
         if (nivelActualIndex < niveles.Count)
+        {
             SceneManager.LoadScene(niveles[nivelActualIndex]);
+        }
         else
+        {
+            bool topScore = HighScoreManager.Instance.TryInsertGlobalScore(score, out int pos);
+
+            if (topScore)
+            {
+                NombreRecordPopup.Instance.SolicitarNombre((nombre) => { HighScoreManager.Instance.SetNombreGlobal(pos, nombre); });
+            }
             SceneManager.LoadScene("Ganar");
+        }
     }
 
     public void ReiniciarJuegoDesdeCero() => IniciarJuego();
