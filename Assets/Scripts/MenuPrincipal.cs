@@ -2,20 +2,10 @@ using UnityEngine;
 
 public class MenuPrincipal : MonoBehaviour
 {
-    [SerializeField] private ScoresPanelController scoresCtrl;
-
-    [Header("Panel de Opciones")] //no implementado
+    [Header("Panel de Opciones")]
     [SerializeField] private GameObject opcionesPanel;
 
-    public void PlayGame()
-    {
-        GameManager.Instance.IniciarJuego();
-    }
-
-    public void OpenScores()
-    {
-        scoresCtrl.Open();
-    }
+    public void PlayGame() => GameManager.Instance.IniciarJuego();
 
     public void OpenOptions()
     {

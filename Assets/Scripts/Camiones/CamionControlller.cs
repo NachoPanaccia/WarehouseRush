@@ -9,37 +9,25 @@ public class CamionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Box"))
-        {
-            cajasRecibidas++;
+        if (!other.CompareTag("Box")) return;
 
-            other.gameObject.layer = LayerMask.NameToLayer("Default");
+        cajasRecibidas++;
 
-            other.tag = "Untagged";
-            other.transform.SetParent(transform, true);
+        other.gameObject.layer = LayerMask.NameToLayer("Default");
+        other.tag = "Untagged";
+        other.transform.SetParent(transform, true);
 
-            if (cajasRecibidas >= cajasNecesarias)
-            {
-                StartCoroutine(DestruirConDelay());
-            }
-        }
+        if (cajasRecibidas >= cajasNecesarias)
+            StartCoroutine(DestruirConDelay());
     }
 
     private IEnumerator DestruirConDelay()
     {
         yield return new WaitForSeconds(delayAntesDeDestruir);
-
         if (CamionManager.Instance != null)
-        {
             CamionManager.Instance.EliminarCamion(gameObject);
-        }
         else
-        {
-            Debug.LogError(" camion mnager error");
-        }
-
-        Destroy(gameObject);
+            Debug.LogError("CamionManager no encontrado.");
+        // La destrucción final siempre la hace el manager al desapilar
     }
-  
-
 }

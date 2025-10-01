@@ -6,122 +6,50 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public int score = 0;
-    private List<int> puntosPorNivel = new();
-
-    [SerializeField] private List<string> niveles = new();   // mismos nombres que en Build Settings
-    private List<int> buildIndices = new();
-    public IReadOnlyList<string> Niveles => niveles;
-    private int nivelActualIndex = -1;
-
-    public struct ResultadoNivel
-    {
-        public bool win;
-        public int puntosNivel;
-        public int puntajeTotal;
-        public float tiempo;
-        public int estrellas;
-        public string motivoDerrota;
-        public bool nuevoRecord;
-        public int recordLevelIdx;
-        public int recordPos;
-    }
-    public ResultadoNivel ultimoResultado { get; private set; }
+    [SerializeField] private List<string> niveles = new(); // nombres exactos en Build Settings
+    private int nivelActual = -1;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            puntosPorNivel = new List<int>(niveles.Count);
-            for (int i = 0; i < niveles.Count; i++) puntosPorNivel.Add(0);
-        }
-        else Destroy(gameObject);
-
-        buildIndices.Clear();
-        foreach (var n in niveles)
-            buildIndices.Add(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/{n}.unity"));
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
     }
 
-    public int BuildIndexDeOpcion(int opcion) => buildIndices[opcion];
-
+    // === API de flujo ===
     public void IniciarJuego()
     {
-        score = 0;
-        for (int i = 0; i < puntosPorNivel.Count; i++) puntosPorNivel[i] = 0;
-
-        nivelActualIndex = 0;
-        SceneManager.LoadScene(niveles[0]);
+        nivelActual = 0;
+        CargarNivelActual();
     }
 
-    public void AddScore(int amount)
+    public void NivelCompletado()
     {
-        score += amount;
-        Debug.Log("Puntaje actual: " + score);
+        nivelActual++;
+        if (nivelActual < niveles.Count) CargarNivelActual();
+        else VolverAlMenu(); // fin de campaña
     }
 
-    public void EndLevel(bool win, int puntosNivel, float tiempo, string motivo, int estrellas, bool nuevoRecord = false, int recordLevelIdx = -1, int recordPos = -1)
+    public void NivelFallado()
     {
-        if (win)
-        {
-            int previo = puntosPorNivel[nivelActualIndex];
-            int delta = puntosNivel - previo;
-
-            AddScore(delta);
-            puntosPorNivel[nivelActualIndex] = puntosNivel;
-            Debug.Log(" cargando next level ");
-        }
-
-        ultimoResultado = new ResultadoNivel
-        {
-            win = win,
-            puntosNivel = puntosNivel,
-            puntajeTotal = score,
-            tiempo = tiempo,
-            motivoDerrota = motivo,
-            estrellas = estrellas,
-            nuevoRecord = nuevoRecord,
-            recordLevelIdx = recordLevelIdx,
-            recordPos = recordPos
-        };
-        Debug.Log($"EndLevel ⇒ win:{win}, tiempo:{tiempo} – cargando ResultadoNivel");
-        SceneManager.LoadScene("ResultadoNivel");
+        // Reinicia este mismo
+        CargarNivelActual();
     }
 
-    public void ReintentarNivel()
-    {
-        if (nivelActualIndex < 0) nivelActualIndex = 0;
-        SceneManager.LoadScene(niveles[nivelActualIndex]);
-    }
+    public void GoToMainMenu() => VolverAlMenu();
+    public void QuitGame() => Application.Quit();
 
-    public void CargarSiguienteNivel()
+    // === Helpers ===
+    private void CargarNivelActual()
     {
-        nivelActualIndex++;
-        if (nivelActualIndex < niveles.Count)
-        {
-            SceneManager.LoadScene(niveles[nivelActualIndex]);
-        }
+        if (nivelActual >= 0 && nivelActual < niveles.Count)
+            SceneManager.LoadScene(niveles[nivelActual]);
         else
-        {
-            bool topScore = HighScoreManager.Instance.TryInsertGlobalScore(score, out int pos);
-
-            if (topScore)
-            {
-                NombreRecordPopup.Instance.SolicitarNombre((nombre) => { HighScoreManager.Instance.SetNombreGlobal(pos, nombre); });
-            }
-            SceneManager.LoadScene("Ganar");
-        }
+            VolverAlMenu();
     }
 
-    public void ReiniciarJuegoDesdeCero() => IniciarJuego();
-
-    public void GoToMainMenu()
+    private void VolverAlMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuPrincipal");
+        SceneManager.LoadScene("MenuPrincipal"); // ajustá el nombre si difiere
     }
-
-    public void QuitGame() => Application.Quit();
 }

@@ -15,16 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Niveles/Nivel 1.unity
     guid: 49f98977c649a454c9e9926ba43964e0
   - enabled: 1
-    path: Assets/Scenes/ResultadoNivel.unity
-    guid: a87409286fed9184bb7efde9c683062d
-  - enabled: 1
-    path: Assets/Scenes/Perder.unity
-    guid: dec1d9edba5f07844a10da714b1e00a3
-  - enabled: 1
-    path: Assets/Scenes/Ganar.unity
-    guid: 47bc7b80c5ee26a46b9bccdd698d0cfa
-  - enabled: 0
     path: Assets/Scenes/Niveles/Nivel 2.unity
     guid: 9c6591b6de061c049b7642fd6b4f1ec0
+  - enabled: 1
+    path: Assets/Scenes/ResultadoNivel.unity
+    guid: a87409286fed9184bb7efde9c683062d
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

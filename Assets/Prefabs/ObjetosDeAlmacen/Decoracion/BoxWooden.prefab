@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 128322116817086305}
   - component: {fileID: 1104158761797796235}
   - component: {fileID: 778154049364328107}
+  - component: {fileID: 4953378129913662202}
   m_Layer: 0
   m_Name: BoxWooden
   m_TagString: Untagged
@@ -88,6 +89,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4953378129913662202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5415905782948060294}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.858549, y: 1.2646601, z: 2.5926251}
+  m_Center: {x: -0.55702114, y: 0.63112104, z: -0.66398215}
 --- !u!1001 &713602400551663202
 PrefabInstance:
   m_ObjectHideFlags: 0

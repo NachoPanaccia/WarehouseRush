@@ -1,22 +1,21 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    [Header("Tiempo")]
+    [Header("Tiempo (opcional)")]
     [SerializeField] private TMP_Text textoTiempo;
-    [SerializeField] private float tiempoDeNivel;
+    [SerializeField] private float tiempoDeNivel = 0f; // 0 o negativo = desactivado
     private float tiempoRestante;
 
     [Header("Pausa")]
     [SerializeField] public GameObject pauseMenuUI;
-    
+
     private bool nivelCompletado = false;
     public GameState currentState = GameState.Playing;
-    
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -26,39 +25,56 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         tiempoRestante = tiempoDeNivel;
+        ActualizarUI();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P)) TogglePause();
+
+        if (currentState != GameState.Playing || nivelCompletado) return;
+
         ControlarTiempo();
         ControlarCamiones();
-
-        if (Input.GetKeyDown(KeyCode.P))
-            TogglePause();
     }
 
     private void ControlarTiempo()
     {
-        if (currentState != GameState.Playing || nivelCompletado) return;
+        if (tiempoDeNivel <= 0f) return; // cronómetro desactivado
 
         if (tiempoRestante > 0f)
         {
             tiempoRestante -= Time.deltaTime;
-            textoTiempo.text = "Tiempo: " + FormatearTiempo(tiempoRestante);
+            if (tiempoRestante < 0f) tiempoRestante = 0f;
+            ActualizarUI();
         }
         else
         {
-            tiempoRestante = 0f;
-            textoTiempo.text = "Tiempo: 00:00:00:00";
-
-            GameManager.Instance.EndLevel(
-                win: false,
-                puntosNivel: 0,
-                tiempo: tiempoDeNivel,
-                motivo: "Tiempo agotado",
-                estrellas: 0
-            );
+            // Se acabó el tiempo
+            nivelCompletado = true;
+            GameManager.Instance.NivelFallado();
         }
+    }
+
+    private void ControlarCamiones()
+    {
+        if (CamionManager.Instance != null &&
+            CamionManager.Instance.CantidadCamionesActivos() == 0)
+        {
+            nivelCompletado = true;
+            GameManager.Instance.NivelCompletado();
+        }
+    }
+
+    private void ActualizarUI()
+    {
+        if (!textoTiempo) return;
+        if (tiempoDeNivel <= 0f) { textoTiempo.text = ""; return; }
+
+        var t = System.TimeSpan.FromSeconds(tiempoRestante);
+        textoTiempo.text = $"Tiempo: {t.Minutes:00}:{t.Seconds:00}:{t.Milliseconds / 10:00}";
     }
 
     public void TogglePause()
@@ -67,9 +83,7 @@ public class LevelManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             currentState = GameState.Paused;
-
-            if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
-
+            if (pauseMenuUI) pauseMenuUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -83,90 +97,12 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         currentState = GameState.Playing;
-
-        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
-
+        if (pauseMenuUI) pauseMenuUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    
-    private void ControlarCamiones()
-    {
-        if (nivelCompletado) return;
 
-        if (CamionManager.Instance != null &&
-            CamionManager.Instance.CantidadCamionesActivos() == 0)
-        {
-            CompletarNivel();
-        }
-    }
-
-    
-    public void NivelCompleto() => CompletarNivel();
-
-    private void CompletarNivel()
-    {
-        if (nivelCompletado) return;
-        nivelCompletado = true;
-
-        int puntosNivel = CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado);
-
-        bool nuevoRecord = HighScoreManager.Instance.TryInsertLevelTime(SceneManager.GetActiveScene().buildIndex, tiempoUsado, menorEsMejor: true, out int pos);
-
-        GameManager.Instance.EndLevel(
-            win: true,
-            puntosNivel: puntosNivel,
-            tiempo: tiempoUsado,
-            motivo: string.Empty,
-            estrellas: estrellas,
-            nuevoRecord: nuevoRecord,
-            recordLevelIdx: SceneManager.GetActiveScene().buildIndex,
-            recordPos: pos);
-    }
-
-    private static string FormatearTiempo(float segundos)
-    {
-        var t = System.TimeSpan.FromSeconds(segundos);
-        
-        return string.Format("{0:00}:{1:00}:{2:00}:{3:00}",
-                             t.Hours,
-                             t.Minutes,
-                             t.Seconds,
-                             t.Milliseconds / 10);
-    }
-    public void VolverAlMenuPrincipal()
-    {
-        SceneManager.LoadScene("MenuPrincipal");
-    }
-
-    private int CalcularYSumarPuntaje(out int estrellas, out float tiempoUsado)
-    {
-        tiempoUsado = tiempoDeNivel - tiempoRestante;
-        float pr = tiempoUsado / tiempoDeNivel;
-
-        int puntos;
-        if (pr <= 0.25f) // ≤ 25 %
-        {
-            puntos = 200; estrellas = 3;
-        }
-        else if (pr <= 0.5f) // >25 % y ≤50 %
-        {
-            puntos = 100; estrellas = 2;
-        }
-        else // >50 % (hasta 100 %)
-        {
-            puntos = 50; estrellas = 1;
-        }
-        
-        Debug.Log($"Nivel completado en {FormatearTiempo(tiempoUsado)} → +{puntos} pts");
-        return puntos;
-    }
+    public void VolverAlMenuPrincipal() => GameManager.Instance.GoToMainMenu();
 }
 
-public enum GameState
-{
-    Playing,
-    Paused,
-    Victory,
-    Defeat
-}
+public enum GameState { Playing, Paused, Victory, Defeat }

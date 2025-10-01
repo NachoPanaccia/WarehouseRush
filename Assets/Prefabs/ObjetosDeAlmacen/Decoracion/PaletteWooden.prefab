@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5941053753124221441}
   - component: {fileID: 5765157651468526071}
   - component: {fileID: 412423202006936187}
+  - component: {fileID: 2781456136727643381}
   m_Layer: 0
   m_Name: PaletteWooden
   m_TagString: Untagged
@@ -87,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2781456136727643381
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180160955412678550}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9999999, y: 0.5424161, z: 1.4781183}
+  m_Center: {x: -0.000000059604645, y: 0.24432926, z: 0.015635729}
 --- !u!1001 &7726559175164901273
 PrefabInstance:
   m_ObjectHideFlags: 0
