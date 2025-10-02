@@ -268,8 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf059821a456ba46954c35ae8aec576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagCaja: Box
   cajasNecesarias: 2
-  delayAntesDeDestruir: 2
+  delayAntesDeDespachar: 1
 --- !u!4 &5718344716792483861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c144f7a88017984d82d9a0b1d107033, type: 3}

@@ -1,15 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Collider))]
 public class CamionController : MonoBehaviour
 {
-    private int cajasRecibidas = 0;
+    [SerializeField] private string tagCaja = "Box"; // si tu tag es "box", cambialo acá
     [SerializeField] private int cajasNecesarias = 5;
-    [SerializeField] private float delayAntesDeDestruir = 2f;
+    [SerializeField] private float delayAntesDeDespachar = 2f;
+
+    private int cajasRecibidas = 0;
+
+    private void Reset()
+    {
+        var col = GetComponent<Collider>();
+        if (col) col.isTrigger = true;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Box")) return;
+        if (!other.CompareTag(tagCaja)) return;
 
         cajasRecibidas++;
 
@@ -18,16 +27,16 @@ public class CamionController : MonoBehaviour
         other.transform.SetParent(transform, true);
 
         if (cajasRecibidas >= cajasNecesarias)
-            StartCoroutine(DestruirConDelay());
+            StartCoroutine(DespacharTrasDelay());
     }
 
-    private IEnumerator DestruirConDelay()
+    private IEnumerator DespacharTrasDelay()
     {
-        yield return new WaitForSeconds(delayAntesDeDestruir);
+        yield return new WaitForSeconds(delayAntesDeDespachar);
+
         if (CamionManager.Instance != null)
-            CamionManager.Instance.EliminarCamion(gameObject);
+            CamionManager.Instance.NotificarCamionListo(this);
         else
-            Debug.LogError("CamionManager no encontrado.");
-        // La destrucción final siempre la hace el manager al desapilar
+            Debug.LogError("CamionManager no encontrado en escena.");
     }
 }

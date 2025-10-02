@@ -5,15 +5,14 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    [Header("Tiempo (opcional)")]
+    [Header("UI (opcional)")]
     [SerializeField] private TMP_Text textoTiempo;
-    [SerializeField] private float tiempoDeNivel = 0f; // 0 o negativo = desactivado
-    private float tiempoRestante;
+    [SerializeField] private GameObject pauseMenuUI;
 
-    [Header("Pausa")]
-    [SerializeField] public GameObject pauseMenuUI;
-
+    private float tiempoDeNivel;     // viene de GameManager
+    private float tiempoRestante;    // contador interno
     private bool nivelCompletado = false;
+
     public GameState currentState = GameState.Playing;
 
     private void Awake()
@@ -24,8 +23,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        tiempoDeNivel = GameManager.Instance ? GameManager.Instance.GetTiempoParaEscenaActual() : 0f;
         tiempoRestante = tiempoDeNivel;
         ActualizarUI();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -33,33 +34,24 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) TogglePause();
-
         if (currentState != GameState.Playing || nivelCompletado) return;
 
-        ControlarTiempo();
-        ControlarCamiones();
-    }
-
-    private void ControlarTiempo()
-    {
-        if (tiempoDeNivel <= 0f) return; // cronómetro desactivado
-
-        if (tiempoRestante > 0f)
+        // Tiempo (si está activo)
+        if (tiempoDeNivel > 0f)
         {
             tiempoRestante -= Time.deltaTime;
-            if (tiempoRestante < 0f) tiempoRestante = 0f;
+            if (tiempoRestante <= 0f)
+            {
+                tiempoRestante = 0f;
+                ActualizarUI();
+                nivelCompletado = true;
+                GameManager.Instance.NivelFallado();
+                return;
+            }
             ActualizarUI();
         }
-        else
-        {
-            // Se acabó el tiempo
-            nivelCompletado = true;
-            GameManager.Instance.NivelFallado();
-        }
-    }
 
-    private void ControlarCamiones()
-    {
+        // Chequeo de camiones
         if (CamionManager.Instance != null &&
             CamionManager.Instance.CantidadCamionesActivos() == 0)
         {
@@ -87,7 +79,7 @@ public class LevelManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        else if (currentState == GameState.Paused)
+        else
         {
             ResumeGame();
         }

@@ -6,7 +6,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private List<string> niveles = new(); // nombres exactos en Build Settings
+    // Orden de la campaña:
+    [SerializeField] private List<string> niveles = new() { "Nivel 0", "Nivel 1", "Nivel 2" };
+
+    // Tiempos por nivel (segundos)
+    private readonly Dictionary<string, float> tiemposPorNivel = new()
+    {
+        { "Nivel 0", 60f },
+        { "Nivel 1", 50f },
+        { "Nivel 2", 240f }
+    };
+
     private int nivelActual = -1;
 
     private void Awake()
@@ -15,7 +25,7 @@ public class GameManager : MonoBehaviour
         else { Destroy(gameObject); }
     }
 
-    // === API de flujo ===
+    // === API ===
     public void IniciarJuego()
     {
         nivelActual = 0;
@@ -29,14 +39,16 @@ public class GameManager : MonoBehaviour
         else VolverAlMenu(); // fin de campaña
     }
 
-    public void NivelFallado()
-    {
-        // Reinicia este mismo
-        CargarNivelActual();
-    }
+    public void NivelFallado() => CargarNivelActual();
 
     public void GoToMainMenu() => VolverAlMenu();
     public void QuitGame() => Application.Quit();
+
+    public float GetTiempoParaEscenaActual()
+    {
+        var nombre = SceneManager.GetActiveScene().name;
+        return tiemposPorNivel.TryGetValue(nombre, out var t) ? t : 0f; // 0 = sin cronómetro
+    }
 
     // === Helpers ===
     private void CargarNivelActual()
