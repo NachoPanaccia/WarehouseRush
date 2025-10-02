@@ -3,25 +3,29 @@ using System.Collections.Generic;
 
 public static class QuickSorter
 {
-    public static void QuickSort<T>(List<T> list, Comparison<T> cmp)
+    public static void QuickSort<T>(List<T> list, Comparison<T> comparison)
     {
-        if (list == null || list.Count < 2) return;
-        QuickSort(list, 0, list.Count - 1, cmp);
+        if (list == null || list.Count <= 1) return;
+        QuickSort(list, 0, list.Count - 1, comparison);
     }
-    private static void QuickSort<T>(List<T> l, int left, int right, Comparison<T> cmp)
+
+    private static void QuickSort<T>(List<T> list, int left, int right, Comparison<T> cmp)
     {
-        if (left >= right) return;
-        int p = Partition(l, left, right, cmp);
-        QuickSort(l, left, p - 1, cmp);
-        QuickSort(l, p + 1, right, cmp);
-    }
-    private static int Partition<T>(List<T> l, int left, int right, Comparison<T> cmp)
-    {
-        var pivot = l[right];
-        int i = left - 1;
-        for (int j = left; j < right; j++)
-            if (cmp(l[j], pivot) <= 0) { i++; (l[i], l[j]) = (l[j], l[i]); }
-        (l[i + 1], l[right]) = (l[right], l[i + 1]);
-        return i + 1;
+        int i = left;
+        int j = right;
+        T pivot = list[(left + right) / 2];
+
+        while (i <= j)
+        {
+            while (cmp(list[i], pivot) < 0) i++;
+            while (cmp(list[j], pivot) > 0) j--;
+            if (i <= j)
+            {
+                (list[i], list[j]) = (list[j], list[i]);
+                i++; j--;
+            }
+        }
+        if (left < j) QuickSort(list, left, j, cmp);
+        if (i < right) QuickSort(list, i, right, cmp);
     }
 }

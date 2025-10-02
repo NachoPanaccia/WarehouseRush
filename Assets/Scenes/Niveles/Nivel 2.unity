@@ -5914,11 +5914,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raizCamiones: {fileID: 1603968191}
-  usarOrdenPersonalizado: 1
+  usarTieBreaker: 1
   mostrarOrdenSalida: 1
   labelOffset: {x: 0, y: 2, z: 0}
   labelFontSize: 4
   labelColor: {r: 1, g: 1, b: 1, a: 1}
+  logOrdenEnConsola: 0
+  mostrarPesoEnLabel: 0
+  togglePesoDebugKey: 284
 --- !u!1001 &1321175856
 PrefabInstance:
   m_ObjectHideFlags: 0

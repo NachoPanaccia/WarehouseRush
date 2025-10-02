@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Hace que el objeto mire siempre a la cámara principal.
-/// Útil para rótulos 3D (TextMeshPro).
-/// </summary>
 public class BillboardSimple : MonoBehaviour
 {
     void LateUpdate()

@@ -8,21 +8,25 @@ public class CamionManager : MonoBehaviour
     public static CamionManager Instance { get; private set; }
 
     [Header("Descubrimiento")]
-    [Tooltip("Opcional: si lo asignás, solo busca camiones dentro de este transform.")]
+    [Tooltip("Si se asigna, busca camiones dentro de este transform; si no, busca en toda la escena.")]
     [SerializeField] private Transform raizCamiones;
 
-    [Tooltip("Si todos los camiones tienen CamionOrden, se usa ese valor (ascendente).")]
-    [SerializeField] private bool usarOrdenPersonalizado = true;
+    [Tooltip("Si true, empates de peso se resuelven por SiblingIndex (estable).")]
+    [SerializeField] private bool usarTieBreaker = true;
 
-    [Header("Indicadores de orden (visual)")]
+    [Header("Indicadores sobre camión")]
     [SerializeField] private bool mostrarOrdenSalida = true;
-    [SerializeField] private Vector3 labelOffset = new Vector3(0f, 2.0f, 0f);
-    [SerializeField] private int labelFontSize = 3;                // TextMeshPro 3D
+    [SerializeField] private Vector3 labelOffset = new Vector3(0f, 2f, 0f);
+    [SerializeField] private int labelFontSize = 3;
     [SerializeField] private Color labelColor = Color.white;
 
-    private PilaDeCamionesDinamica pila;
-    // Lista donde el índice 0 es el PRÓXIMO EN SALIR (tope de la pila)
-    private readonly List<GameObject> ordenTopPrimero = new();
+    [Header("Debug")]
+    [SerializeField] private bool logOrdenEnConsola = true;
+    [SerializeField] private bool mostrarPesoEnLabel = false;
+    [SerializeField] private KeyCode togglePesoDebugKey = KeyCode.F3;
+
+    private PilaDeCamionesDinamica pila;                 // stack físico (LIFO real)
+    private readonly List<GameObject> ordenTopPrimero = new(); // lista lógica: índice 0 = próximo en salir (ASC por peso)
 
     private void Awake() => Instance = this;
 
@@ -38,41 +42,76 @@ public class CamionManager : MonoBehaviour
 
         if (camiones == null || camiones.Length == 0)
         {
-            Debug.LogWarning("No se encontraron camiones en la escena.");
+            Debug.LogWarning("[CamionManager] No se encontraron camiones en la escena.");
             return;
         }
 
-        // 2) Orden base
-        var lista = camiones.ToList();
-
-        if (usarOrdenPersonalizado && lista.All(c => c.TryGetComponent<CamionOrden>(out _)))
+        // 2) Armar datos (peso + tie-breaker)
+        var datos = new List<(GameObject go, string name, int peso, int tie)>(camiones.Length);
+        foreach (var c in camiones)
         {
-            lista = lista.OrderBy(c => c.GetComponent<CamionOrden>().orden).ToList();
-        }
-        else if (raizCamiones != null)
-        {
-            lista = lista.OrderBy(c => c.transform.GetSiblingIndex()).ToList();
-        }
+            if (!c.TryGetComponent(out PesoDeCamion pesoComp))
+            {
+                // Si el prefab no lo tiene, lo agregamos; Awake se ejecuta y asigna peso [1..50]
+                pesoComp = c.gameObject.AddComponent<PesoDeCamion>();
+            }
 
-        // 3) Armar pila (LIFO) y preparar labels (apagamos luces inicialmente)
-        foreach (var c in lista)
-        {
-            var luz = c.GetComponentInChildren<Light>();
-            if (luz) luz.enabled = false;
-
-            pila.Apilar(c.gameObject);
+            int tie = c.transform.GetSiblingIndex();
+            string nombre = c.gameObject.name;
+            datos.Add((c.gameObject, nombre, pesoComp.Peso, tie));
         }
 
-        // Construimos la vista "top primero" (reverse de lista)
+        if (logOrdenEnConsola)
+        {
+            Debug.Log("[CamionManager] ORDEN ANTES de Quicksort:\n" + Formatear(datos));
+        }
+
+        // 3) ORDENAR con Quicksort por peso ASC (menor sale primero). Empates opcionales por tie-breaker.
+        QuickSorter.QuickSort(datos, (a, b) =>
+        {
+            int cmp = a.peso.CompareTo(b.peso);
+            if (cmp != 0) return cmp;
+            if (!usarTieBreaker) return 0;
+            return a.tie.CompareTo(b.tie);
+        });
+
+        if (logOrdenEnConsola)
+        {
+            Debug.Log("[CamionManager] ORDEN DESPUÉS de Quicksort (ASC por peso):\n" + Formatear(datos));
+        }
+
+        // 4) Construir la lista lógica "top primero" (ASC por peso)
         ordenTopPrimero.Clear();
-        ordenTopPrimero.AddRange(lista.AsEnumerable().Reverse().Select(x => x.gameObject));
+        ordenTopPrimero.AddRange(datos.Select(d => d.go));
 
-        if (mostrarOrdenSalida) ActualizarLabels();
+        // 5) Construir pila LIFO física: apilar en reversa para que el primero (ASC) quede arriba del stack
+        //    - último en apilar = datos[0] => tope del stack es el de menor peso
+        for (int i = datos.Count - 1; i >= 0; i--)
+        {
+            var go = datos[i].go;
 
-        ActivarLuzDelTope();
+            // apago todas las luces de arranque
+            var l = go.GetComponentInChildren<Light>(true);
+            if (l) l.enabled = false;
+
+            pila.Apilar(go);
+        }
+
+        // 6) Labels y luz del tope (fija, sin parpadeo)
+        if (mostrarOrdenSalida) ActualizarLabels(datos);
+        EncenderLuzDelTope();
     }
 
-    // --- API desde CamionController ---
+    private void Update()
+    {
+        if (Input.GetKeyDown(togglePesoDebugKey))
+        {
+            mostrarPesoEnLabel = !mostrarPesoEnLabel;
+            if (mostrarOrdenSalida) ActualizarLabels(null); // se rehace con los pesos actuales
+        }
+    }
+
+    // === API desde CamionController ===
     public void NotificarCamionListo(CamionController camion)
     {
         if (pila.Peek() == camion.gameObject)
@@ -81,42 +120,51 @@ public class CamionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Este camión no es el tope de la pila (LIFO). No se despacha.");
+            Debug.LogWarning("[CamionManager] Este camión no es el tope de la pila (LIFO). No se despacha.");
         }
     }
 
-    // --- Helpers de despacho ---
+    // === Despacho ===
     private void DespacharCamion()
     {
         var camion = pila.Desapilar();
         if (camion)
         {
             QuitarLabel(camion);
-            var luz = camion.GetComponentInChildren<Light>();
-            if (luz) luz.enabled = false;
 
-            // Remover de la lista visual (top primero)
+            // Apagar su luz
+            var l = camion.GetComponentInChildren<Light>(true);
+            if (l) l.enabled = false;
+
             ordenTopPrimero.Remove(camion);
-
             Destroy(camion);
         }
 
-        if (mostrarOrdenSalida) ActualizarLabels();
-        ActivarLuzDelTope();
+        if (mostrarOrdenSalida) ActualizarLabels(null);
+        EncenderLuzDelTope();
     }
 
-    private void ActivarLuzDelTope()
+    private void EncenderLuzDelTope()
     {
+        // Apagar todas primero
+        foreach (var go in ordenTopPrimero)
+        {
+            if (!go) continue;
+            var l = go.GetComponentInChildren<Light>(true);
+            if (l) l.enabled = false;
+        }
+
+        // Encender solo la del tope real
         var top = pila.Peek();
         if (!top) return;
-        var luz = top.GetComponentInChildren<Light>();
-        if (luz) luz.enabled = true;
+        var luzTop = top.GetComponentInChildren<Light>(true);
+        if (luzTop) luzTop.enabled = true;
     }
 
     public GameObject ObtenerCamionActual() => pila.Peek();
     public int CantidadCamionesActivos() => pila.Count;
 
-    // --- Descubrimiento compatible con versiones ---
+    // === Descubrimiento compatible ===
     private CamionController[] FindCamionesInScene()
     {
 #if UNITY_2023_1_OR_NEWER
@@ -129,17 +177,51 @@ public class CamionManager : MonoBehaviour
 #endif
     }
 
-    // --- Labels ---
-    private void ActualizarLabels()
+    // === Labels ===
+    private void ActualizarLabels(List<(GameObject go, string name, int peso, int tie)> cacheOrdenAsc)
     {
+        // Si no me pasaron datos, vuelvo a mirar pesos actuales para texto (por si togglearon debug).
+        Dictionary<GameObject, int> pesos = null;
+        if (mostrarPesoEnLabel)
+        {
+            pesos = new Dictionary<GameObject, int>(ordenTopPrimero.Count);
+            foreach (var go in ordenTopPrimero)
+            {
+                if (!go) continue;
+                if (go.TryGetComponent(out PesoDeCamion p))
+                    pesos[go] = p.Peso;
+            }
+        }
+
         for (int i = 0; i < ordenTopPrimero.Count; i++)
         {
             var go = ordenTopPrimero[i];
-            CrearOActualizarLabel(go, i + 1); // 1 = próximo en salir
+            if (!go) continue;
+
+            int numero = i + 1;
+
+            string texto = numero.ToString();
+            if (mostrarPesoEnLabel)
+            {
+                // Si tengo cache, uso el peso cacheado; sino, el que leí recién
+                int peso;
+                if (cacheOrdenAsc != null)
+                {
+                    var item = cacheOrdenAsc.FirstOrDefault(d => d.go == go);
+                    peso = item.peso;
+                }
+                else
+                {
+                    peso = (pesos != null && pesos.TryGetValue(go, out var w)) ? w : -1;
+                }
+                if (peso >= 0) texto += $" ({peso})";
+            }
+
+            CrearOActualizarLabel(go, texto);
         }
     }
 
-    private void CrearOActualizarLabel(GameObject camion, int numero)
+    private void CrearOActualizarLabel(GameObject camion, string texto)
     {
         const string labelName = "__OrdenLabel";
         Transform t = camion.transform.Find(labelName);
@@ -156,16 +238,15 @@ public class CamionManager : MonoBehaviour
             tmp.fontSize = labelFontSize;
             tmp.color = labelColor;
             tmp.enableAutoSizing = false;
-            tmp.text = numero.ToString();
+            tmp.text = texto;
 
-            // Billboard para mirar a la cámara
+            // Siempre mirando a la cámara
             go.AddComponent<BillboardSimple>();
         }
         else
         {
-            tmp = t.GetComponent<TextMeshPro>();
-            if (tmp == null) tmp = t.gameObject.AddComponent<TextMeshPro>();
-            tmp.text = numero.ToString();
+            tmp = t.GetComponent<TextMeshPro>() ?? t.gameObject.AddComponent<TextMeshPro>();
+            tmp.text = texto;
             tmp.fontSize = labelFontSize;
             tmp.color = labelColor;
         }
@@ -175,5 +256,11 @@ public class CamionManager : MonoBehaviour
     {
         var t = camion.transform.Find("__OrdenLabel");
         if (t != null) Destroy(t.gameObject);
+    }
+
+    private string Formatear(List<(GameObject go, string name, int peso, int tie)> datos)
+    {
+        // nombre(peso)[tie]
+        return string.Join(" | ", datos.Select(d => $"{d.name}({d.peso})[{d.tie}]"));
     }
 }
