@@ -5,7 +5,7 @@ using System.Collections;
 public class CamionController : MonoBehaviour
 {
     [SerializeField] private string tagCaja = "Box"; // si tu tag es "box", cambialo acá
-    [SerializeField] private int cajasNecesarias = 5;
+    [SerializeField] private int cajasNecesarias = 1;
     [SerializeField] private float delayAntesDeDespachar = 2f;
 
     private int cajasRecibidas = 0;

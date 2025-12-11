@@ -47,6 +47,8 @@ public class LevelSelectManager : MonoBehaviour
 
             btn.onClick.AddListener(() => OnLevelButtonClicked(indiceCaptura));
         }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void OnLevelButtonClicked(int index)

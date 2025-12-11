@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagCaja: Box
-  cajasNecesarias: 2
+  cajasNecesarias: 1
   delayAntesDeDespachar: 1
 --- !u!114 &9163040628287911689
 MonoBehaviour:
