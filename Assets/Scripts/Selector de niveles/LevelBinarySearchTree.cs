@@ -16,9 +16,19 @@ public class LevelBinarySearchTree
             return new LevelTreeNode(index, sceneName, desbloqueado);
 
         if (index < actual.index)
+        {
             actual.izquierda = InsertarRec(actual.izquierda, index, sceneName, desbloqueado);
-        else
+        }
+        else if (index > actual.index)
+        {
             actual.derecha = InsertarRec(actual.derecha, index, sceneName, desbloqueado);
+        }
+        else
+        {
+            // Si el índice ya existe, actualizamos datos
+            actual.sceneName = sceneName;
+            actual.desbloqueado = desbloqueado;
+        }
 
         return actual;
     }
@@ -37,7 +47,7 @@ public class LevelBinarySearchTree
         return BuscarRec(actual.derecha, index);
     }
 
-    public void ObtenerEnOrden(List<LevelTreeNode> lista)
+    public void RecorrerInOrder(List<LevelTreeNode> lista)
     {
         lista.Clear();
         InOrderRec(raiz, lista);

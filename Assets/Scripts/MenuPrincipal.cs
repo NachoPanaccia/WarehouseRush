@@ -5,7 +5,11 @@ public class MenuPrincipal : MonoBehaviour
     [Header("Panel de Opciones")]
     [SerializeField] private GameObject opcionesPanel;
 
+
     public void PlayGame() => GameManager.Instance.IniciarJuego();
+
+
+    public void NewGame() => GameManager.Instance.NuevoJuego();
 
     public void OpenOptions()
     {

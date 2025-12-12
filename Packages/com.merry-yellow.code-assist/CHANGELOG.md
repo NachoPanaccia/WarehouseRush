@@ -1,5 +1,32 @@
 List of new features, bug fixes and improvements
 
+# Version 1.4.19
+* AGENTS.md support for agentic AI, copilot-instructions.md support is deprecated
+* Visual Studio 2026 compatibility
+* Bugfix for completions and inline visuals for sorting layer related members
+* Can unspecify max_tokens,temperature and top_p in the gpt request options
+* Gpt libraries and models are updated
+
+# Version 1.4.18
+* New code completions: Material/Shader
+* New inline visuals: Material/Shader
+* Bugfix for inline text visuals when document is edited
+* Bugfix for completions for constructor method arguments
+* Hotfix for InputManager data fetching with custom tags
+* Gpt models are updated
+
+# Version 1.4.17
+* Hotfix for Unity compile error
+
+# Version 1.4.16
+* New code completions: RenderingLayerMask (Unity 6 and newer only)
+* New inline visuals: RenderingLayerMask (Unity 6 and newer only), and LayerMask
+* Hotfix for Unity editor freezes
+* Hotfix for inline visuals not showing properly when changing document in Visual Studio
+* Category SortingLayer removed, its items are now under category Layer
+* Minor fix for output window in Visual Studio
+* Gpt libraries and models are updated
+
 # Version 1.4.15
 * Hotfix for code completion for attributes
 

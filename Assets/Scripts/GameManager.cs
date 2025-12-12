@@ -6,106 +6,145 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Orden de la campaña (nombres de escenas)")]
+    // Orden de la campaña (nombres de escenas de niveles, NO el selector)
     [SerializeField] private List<string> niveles = new() { "Nivel 0", "Nivel 1", "Nivel 2" };
+    public IReadOnlyList<string> Niveles => niveles;  // para el LevelSelectManager
 
-    [Header("Tiempos por nivel (segundos)")]
+    // Tiempos por nivel (segundos)
     private readonly Dictionary<string, float> tiemposPorNivel = new()
     {
         { "Nivel 0", 60f },
         { "Nivel 1", 50f },
-        { "Nivel 2", 40f }
+        { "Nivel 2", 240f }
     };
 
-    private int nivelActual = 0;
-
-    // Progreso
-    private const string PREF_MAX_LEVEL = "MAX_LEVEL_UNLOCKED";
-    private int nivelMaxDesbloqueado = 0;
-
-    public IReadOnlyList<string> Niveles => niveles;
-    public int NivelMaxDesbloqueado => nivelMaxDesbloqueado;
+    private int nivelActual = -1;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // Aseguramos que el nivel 0 esté desbloqueado al menos una vez
+            if (niveles.Count > 0 && !PlayerPrefs.HasKey("Nivel_0_Desbloqueado"))
+            {
+                PlayerPrefs.SetInt("Nivel_0_Desbloqueado", 1);
+                PlayerPrefs.Save();
+            }
+        }
+        else
         {
             Destroy(gameObject);
-            return;
+        }
+    }
+
+    // ================= API PRINCIPAL =================
+
+    /// <summary>
+    /// Mantiene la lógica original: ir a la escena del selector de niveles.
+    /// </summary>
+    public void IniciarJuego()
+    {
+        SceneManager.LoadScene("SelectorNiveles");
+    }
+
+    /// <summary>
+    /// Nuevo juego: borra el progreso (bloquea todos los niveles menos el 0)
+    /// y luego va al SelectorNiveles.
+    /// </summary>
+    public void NuevoJuego()
+    {
+        // Borrar estado de desbloqueo de todos los niveles
+        for (int i = 0; i < niveles.Count; i++)
+        {
+            PlayerPrefs.DeleteKey($"Nivel_{i}_Desbloqueado");
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        CargarProgreso();
-    }
-
-    private void CargarProgreso()
-    {
-        nivelMaxDesbloqueado = PlayerPrefs.GetInt(PREF_MAX_LEVEL, 0);
+        // Dejar el nivel 0 desbloqueado
         if (niveles.Count > 0)
-            nivelMaxDesbloqueado = Mathf.Clamp(nivelMaxDesbloqueado, 0, niveles.Count - 1);
-        else
-            nivelMaxDesbloqueado = 0;
-    }
+        {
+            PlayerPrefs.SetInt("Nivel_0_Desbloqueado", 1);
+        }
 
-    private void GuardarProgreso()
-    {
-        PlayerPrefs.SetInt(PREF_MAX_LEVEL, nivelMaxDesbloqueado);
         PlayerPrefs.Save();
+
+        // Sin nivel activo todavía
+        nivelActual = -1;
+
+        // Mantener el flujo: siempre entrar por el Selector de niveles
+        SceneManager.LoadScene("SelectorNiveles");
     }
 
-    // ==== API para el selector de niveles ====
-
-    public bool EstaDesbloqueado(int index)
+    /// <summary>
+    /// Llamás esto cuando el jugador termina un nivel con éxito.
+    /// Desbloquea el siguiente nivel y lo carga.
+    /// </summary>
+    public void NivelCompletado()
     {
-        return index >= 0 && index <= nivelMaxDesbloqueado && index < niveles.Count;
+        // Desbloquear el siguiente nivel si existe
+        if (nivelActual + 1 < niveles.Count)
+        {
+            PlayerPrefs.SetInt($"Nivel_{nivelActual + 1}_Desbloqueado", 1);
+            PlayerPrefs.Save();
+        }
+
+        nivelActual++;
+        if (nivelActual < niveles.Count)
+            SceneManager.LoadScene("SelectorNiveles");
+        else
+            VolverAlMenu(); // fin de campaña
     }
 
+    public void NivelFallado() => CargarNivelActual();
+
+    public void GoToMainMenu() => VolverAlMenu();
+
+    public void QuitGame() => Application.Quit();
+
+    /// <summary>
+    /// Tiempo configurado para la escena actual (lo usa el LevelManager).
+    /// </summary>
+    public float GetTiempoParaEscenaActual()
+    {
+        var nombre = SceneManager.GetActiveScene().name;
+        return tiemposPorNivel.TryGetValue(nombre, out var t) ? t : 0f; // 0 = sin cronómetro
+    }
+
+    /// <summary>
+    /// Lo usa el LevelSelectManager: carga un nivel por índice de la lista 'niveles'.
+    /// </summary>
     public void CargarNivelPorIndice(int index)
     {
-        if (!EstaDesbloqueado(index))
-        {
-            Debug.LogWarning($"Intento de cargar nivel bloqueado: {index}");
-            return;
-        }
-
         if (index < 0 || index >= niveles.Count)
         {
-            Debug.LogError($"Índice de nivel fuera de rango: {index}");
+            Debug.LogWarning($"Índice de nivel inválido: {index}");
             return;
         }
 
         nivelActual = index;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(niveles[nivelActual]);
+        CargarNivelActual();
     }
 
-    // ==== Interacción con el menú principal ====
-
-    // Llamado por MenuPrincipal.PlayGame()
-    public void IniciarJuego()
+    /// <summary>
+    /// Indica si un nivel está desbloqueado (por índice).
+    /// Lo usa el LevelSelectManager para habilitar / deshabilitar botones.
+    /// </summary>
+    public bool EstaDesbloqueado(int index)
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("SelectorNiveles"); // nueva escena
+        if (index < 0 || index >= niveles.Count)
+            return false;
+
+        // El nivel 0 siempre lo consideramos desbloqueado
+        if (index == 0)
+            return true;
+
+        return PlayerPrefs.GetInt($"Nivel_{index}_Desbloqueado", 0) == 1;
     }
 
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
+    // ================= Helpers internos =================
 
-    public void GoToMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuPrincipal");
-    }
-
-    // Compatibilidad con el snippet que tenías
     private void CargarNivelActual()
     {
         if (nivelActual >= 0 && nivelActual < niveles.Count)
@@ -117,44 +156,6 @@ public class GameManager : MonoBehaviour
     private void VolverAlMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuPrincipal");
-    }
-
-    // ==== API usada por LevelManager ====
-
-    public float GetTiempoParaEscenaActual()
-    {
-        string escenaActual = SceneManager.GetActiveScene().name;
-        if (tiemposPorNivel.TryGetValue(escenaActual, out float t))
-            return t;
-
-        // Por si alguna escena no está en el diccionario
-        return 60f;
-    }
-
-    public void NivelCompletado()
-    {
-        string escenaActual = SceneManager.GetActiveScene().name;
-        int indiceActual = niveles.IndexOf(escenaActual);
-
-        if (indiceActual != -1)
-        {
-            // Desbloqueo del siguiente nivel
-            int siguiente = indiceActual + 1;
-            if (siguiente < niveles.Count && siguiente > nivelMaxDesbloqueado)
-            {
-                nivelMaxDesbloqueado = siguiente;
-                GuardarProgreso();
-            }
-        }
-
-        // Después de ganar, volvemos al selector para que se vea el nuevo nivel desbloqueado
-        SceneManager.LoadScene("SelectorNiveles");
-    }
-
-    public void NivelFallado()
-    {
-        // Podés hacer retry, ir al menú, etc. Por ahora lo mando al selector.
-        SceneManager.LoadScene("SelectorNiveles");
+        SceneManager.LoadScene("MenuPrincipal"); // cambiá el nombre si tu menú se llama distinto
     }
 }

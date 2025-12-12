@@ -16,11 +16,11 @@ public class LevelSelectManager : MonoBehaviour
         var gm = GameManager.Instance;
         if (gm == null)
         {
-            Debug.LogError("No hay GameManager en la escena.");
+            Debug.LogError("GameManager.Instance no encontrado en escena.");
             return;
         }
 
-        // 1) Construimos el árbol con todos los niveles
+        // 1) Insertar niveles en el árbol
         var niveles = gm.Niveles;
         for (int i = 0; i < niveles.Count; i++)
         {
@@ -28,24 +28,23 @@ public class LevelSelectManager : MonoBehaviour
             arbolNiveles.Insertar(i, niveles[i], desbloqueado);
         }
 
-        // 2) Obtenemos los nodos ordenados por índice (in-order)
-        List<LevelTreeNode> orden = new();
-        arbolNiveles.ObtenerEnOrden(orden);
+        // 2) Recorrer en orden y crear botones
+        var listaOrdenada = new List<LevelTreeNode>();
+        arbolNiveles.RecorrerInOrder(listaOrdenada);
 
-        // 3) Creamos un botón por cada nodo
-        foreach (var node in orden)
+        foreach (var node in listaOrdenada)
         {
-            Button btn = Instantiate(levelButtonPrefab, content);
-            TMP_Text texto = btn.GetComponentInChildren<TMP_Text>();
+            Button boton = Instantiate(levelButtonPrefab, content);
+            TMP_Text texto = boton.GetComponentInChildren<TMP_Text>();
 
             if (texto != null)
-                texto.text = $"{node.sceneName} {(node.desbloqueado ? "" : "(Bloqueado)")}".Trim();
+                texto.text = node.sceneName;
 
-            btn.interactable = node.desbloqueado;
+            // Activar / desactivar botón según si el nivel está desbloqueado
+            boton.interactable = node.desbloqueado;
 
-            int indiceCaptura = node.index;  // evitar el closure raro
-
-            btn.onClick.AddListener(() => OnLevelButtonClicked(indiceCaptura));
+            int indexCapturado = node.index;
+            boton.onClick.AddListener(() => OnLevelButtonClicked(indexCapturado));
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -53,12 +52,10 @@ public class LevelSelectManager : MonoBehaviour
 
     private void OnLevelButtonClicked(int index)
     {
-        // Acá usamos el ÁRBOL para buscar el nivel (lo importante para la consigna)
-        LevelTreeNode node = arbolNiveles.Buscar(index);
-
+        var node = arbolNiveles.Buscar(index);
         if (node == null)
         {
-            Debug.LogError($"Nivel {index} no encontrado en el árbol.");
+            Debug.LogError($"No se encontró el nodo de nivel {index} en el árbol.");
             return;
         }
 
